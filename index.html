@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#11100e">
 <meta name="description" content="Jawa Wayangan Gold — editor undangan digital tradisional Jawa.">
 <title>Jawa Wayangan Gold — Editor Undangan</title>
-<!-- Icon untuk tab browser -->
+<!-- Icon & Logo untuk PWA / Tab Browser -->
 <link rel="icon" type="image/png" href="logoundanganwayang.png">
 <link rel="apple-touch-icon" href="logoundanganwayang.png">
 <style>
@@ -23,7 +23,7 @@ button{cursor:pointer}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
 .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:rgba(17,16,14,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;color:var(--gold2);font-size:22px;flex-shrink:0;background:url('logoundanganwayang.png') center/cover}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;color:var(--gold2);font-size:22px;flex-shrink:0; background: url('logoundanganwayang.png') center/cover}
 .brand h1{font-family:Georgia,serif;font-size:16px;margin:0;color:var(--gold2);letter-spacing:.04em}
 .brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .top-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
@@ -92,13 +92,13 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:370px;margin:20px auto}
 .count-box{background:#211a11;color:#f2d58a;padding:12px 4px;border-radius:8px}
 .count-box b{display:block;font-size:22px}.count-box small{font-size:9px;letter-spacing:.08em}
-.action-link{display:inline-block;text-decoration:none;background:#241c11;color:#f2d58a;padding:11px 16px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px;border:1px solid #bd9449}
+.action-link{display:inline-block;text-decoration:none;background:#241c11;color:#f2d58a;padding:11px 16px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px;border:1px solid #bd9449; width: 100%; text-align: center;}
 .timeline{max-width:400px;margin:10px auto;text-align:left;border-left:2px solid #bd9449;padding-left:18px}
 .timeline-item{position:relative;margin:0 0 20px}.timeline-item:before{content:"";position:absolute;left:-25px;top:4px;width:10px;height:10px;background:#bd9449;border-radius:50%;box-shadow:0 0 0 4px #bd944933}
 .timeline-item h4{margin:0 0 5px;font-family:Georgia,serif;color:#704c1e}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:420px;margin:16px auto}
-.gallery img{width:100%;height:155px;object-fit:cover;border:3px solid #d1b16d;border-radius:4px;background:#e6d6b5}
-.gallery .empty-photo{height:130px;border:1px dashed #bd9449;display:grid;place-items:center;color:#97763b;font-size:12px;padding:10px}
+.gallery img{width:100%;height:155px;object-fit:cover;border:3px solid #d1b16d;border-radius:4px;background:#e6d6b5; cursor:pointer;}
+.gallery .empty-photo{height:130px;border:1px dashed #bd9449;display:grid;place-items:center;color:#97763b;font-size:12px;padding:10px; grid-column: 1/-1;}
 .form-public{max-width:400px;margin:12px auto;text-align:left}
 .form-public label{display:block;font-size:12px;margin:10px 0 5px}
 .form-public input,.form-public textarea,.form-public select{width:100%;padding:11px;border:1px solid #c8a765;border-radius:8px;background:#fffaf0;color:#49321e}
@@ -122,7 +122,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 <header class="topbar">
   <div class="brand">
     <div class="brand-mark" aria-hidden="true"></div>
-    <div><h1>JAWA WAYANGAN GOLD</h1><small>EDITOR UNDANGAN · v1.1.2 + PWA</small></div>
+    <div><h1>JAWA WAYANGAN GOLD</h1><small>EDITOR UNDANGAN · v1.1.0 + PWA</small></div>
   </div>
   <div class="top-actions">
     <button class="btn ghost" id="installBtn" hidden>＋ Instal Aplikasi</button>
@@ -133,7 +133,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 
 <main class="app">
   <section class="preview-wrap" id="previewArea">
-    <div class="preview-heading"><h2>Pratinjau Undangan</h2><span>Versi 1.1.2 · Integrasi backend</span></div>
+    <div class="preview-heading"><h2>Pratinjau Undangan</h2><span>Versi 1.1.0 · Integrasi backend</span></div>
     <div class="preview-shell">
       <article class="invite" id="invite">
         <section class="cover" id="cover">
@@ -173,10 +173,10 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
           <section class="content-section" id="sec-location"><div class="motif">⌖ ✦ ⌖</div><h2 class="section-title">Lokasi Acara</h2><div class="info-card"><strong id="venueName">Pendopo Sasana Mulyo</strong><p class="body-copy" id="venueAddress">Jl. Melati No. 8, Desa Sukamaju</p><a class="action-link" id="mapsLink" href="https://maps.google.com" target="_blank" rel="noopener">BUKA GOOGLE MAPS ↗</a></div></section>
           <section class="content-section" id="sec-story"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Kisah Kami</h2><div class="timeline" id="storyTimeline"><div class="timeline-item"><h4>Awal Pertemuan</h4><p class="body-copy">Sebuah pertemuan sederhana menjadi awal cerita kami.</p></div><div class="timeline-item"><h4>Hari Lamaran</h4><p class="body-copy">Dengan restu keluarga, kami melangkah menuju hari bahagia.</p></div><div class="timeline-item"><h4>Hari Pernikahan</h4><p class="body-copy">Memulai perjalanan baru dalam ikatan suci.</p></div></div></section>
           <section class="content-section" id="sec-gallery"><div class="motif">❦ ✦ ❦</div><h2 class="section-title">Galeri Kenangan</h2><div class="gallery" id="galleryGrid"><div class="empty-photo">Foto pasangan dapat ditambahkan melalui editor</div></div></section>
-          <section class="content-section" id="sec-rsvp"><div class="motif">✦ ꧁ ✦</div><h2 class="section-title">Konfirmasi Kehadiran</h2><p class="body-copy">Mohon berikan konfirmasi dan doa restu.</p><form class="form-public" id="rsvpForm"><label for="rsvpName">Nama</label><input id="rsvpName" required maxlength="100" placeholder="Nama Anda"><label for="rsvpStatus">Konfirmasi</label><select id="rsvpStatus"><option>Hadir</option><option>Tidak dapat hadir</option><option>Belum pasti</option></select><label for="rsvpCount">Jumlah tamu</label><select id="rsvpCount"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="action-link" type="submit">KIRIM KONFIRMASI</button><p class="help" style="color:#85673a">Tahap 1: data konfirmasi tersimpan di browser ini. Penyimpanan online lintas perangkat disiapkan pada Tahap 2.</p></form></section>
-          <section class="content-section" id="sec-guestbook"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Ucapan & Doa</h2><form class="form-public" id="guestForm"><label for="guestName">Nama</label><input id="guestName" required maxlength="100" placeholder="Nama Anda"><label for="guestMessage">Ucapan dan doa</label><textarea id="guestMessage" required maxlength="500" placeholder="Tuliskan ucapan terbaik..."></textarea><button class="action-link" type="submit">KIRIM UCAPAN</button></form><div id="guestList" class="form-public"><p class="body-copy">Jadilah yang pertama menyampaikan doa.</p></div></section>
+          <section class="content-section" id="sec-rsvp"><div class="motif">✦ ꧁ ✦</div><h2 class="section-title">Konfirmasi Kehadiran</h2><p class="body-copy">Mohon berikan konfirmasi dan doa restu.</p><form class="form-public" id="rsvpForm"><label for="rsvpName">Nama</label><input id="rsvpName" required maxlength="100" placeholder="Nama Anda"><label for="rsvpStatus">Konfirmasi</label><select id="rsvpStatus"><option>Hadir</option><option>Tidak dapat hadir</option><option>Belum pasti</option></select><label for="rsvpCount">Jumlah tamu</label><select id="rsvpCount"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="action-link" id="rsvpBtnSubmit" type="submit">KIRIM KONFIRMASI</button><p class="help" style="color:#85673a">RSVP ini tersambung online dengan Google Sheets dan tersimpan lokal.</p></form></section>
+          <section class="content-section" id="sec-guestbook"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Ucapan & Doa</h2><form class="form-public" id="guestForm"><label for="guestName">Nama</label><input id="guestName" required maxlength="100" placeholder="Nama Anda"><label for="guestMessage">Ucapan dan doa</label><textarea id="guestMessage" required maxlength="500" placeholder="Tuliskan ucapan terbaik..."></textarea><button class="action-link" id="guestBtnSubmit" type="submit">KIRIM UCAPAN</button></form><div id="guestList" class="form-public"><p class="body-copy">Jadilah yang pertama menyampaikan doa.</p></div></section>
           <section class="content-section" id="sec-gift"><div class="motif">❧ ✦ ❧</div><h2 class="section-title">Tanda Kasih</h2><p class="body-copy">Doa restu Anda merupakan hadiah terindah bagi kami.</p><div class="info-card" id="giftCard"><strong id="bankName">Bank / Dompet Digital</strong><p class="body-copy" id="bankOwner">Nama pemilik rekening</p><p class="body-copy" id="bankNumber">0000000000</p><button class="action-link" type="button" id="copyAccountBtn">SALIN NOMOR</button></div></section>
-          <footer class="footer-note"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Matur Nuwun</h2><p id="closingText">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p><div class="couple-names" style="font-size:25px"><span id="footerGroom">Budi Santoso</span><span class="amp">&</span><span id="footerBride">Rahayu Ningrum</span></div><p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p><button class="open-btn" id="shareBtn">BAGIKAN UNDANGAN ↗</button></footer>
+          <footer class="footer-note"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Matur Nuwun</h2><p id="closingText">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p><div class="couple-names" style="font-size:25px"><span id="footerGroom">Budi Santoso</span><span class="amp">&</span><span id="footerBride">Rahayu Ningrum</span></div><p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p><button class="open-btn" id="shareBtn" style="margin-top: 15px;">BAGIKAN UNDANGAN ↗</button></footer>
         </div>
       </article>
     </div>
@@ -185,7 +185,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   <section class="editor" id="editorPanel">
     <div class="editor-head"><h2>Editor Undangan</h2><p>Ubah data di bawah ini. Pratinjau akan mengikuti perubahan secara langsung. Simpan online ke Google Sheets; browser tetap menjadi cadangan lokal.</p></div>
     <nav class="tabs" aria-label="Bagian editor">
-      <button class="tab active" data-tab="basic">Mempelai</button><button class="tab" data-tab="event">Acara</button><button class="tab" data-tab="story">Kisah & Galeri</button><button class="tab" data-tab="style">Desain</button><button class="tab" data-tab="extra">Lainnya</button>
+      <button class="tab active" data-tab="basic">Mempelai</button><button class="tab" data-tab="event">Acara</button><button class="tab" data-tab="story">Kisah & Galeri</button><button class="tab" data-tab="style">Desain</button><button class="tab" data-tab="extra">Koneksi & Lainnya</button>
     </nav>
     <div class="form-area">
       <div class="group active" data-group="basic">
@@ -210,7 +210,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <div class="field"><label for="inStory">Kisah cinta (satu per baris: Tahun | Judul | Cerita)</label><textarea id="inStory" data-bind="story" style="min-height:150px">2022 | Awal Pertemuan | Sebuah pertemuan sederhana menjadi awal cerita kami.
 2025 | Hari Lamaran | Dengan restu keluarga, kami melangkah menuju hari bahagia.
 2026 | Hari Pernikahan | Memulai perjalanan baru dalam ikatan suci.</textarea></div>
-        <div class="field"><label for="inPhotos">Tambah foto galeri dari perangkat</label><input id="inPhotos" type="file" accept="image/*" multiple><p class="help">Foto pada Tahap 1 disimpan di browser perangkat ini. Gunakan foto yang ukurannya wajar agar penyimpanan tidak penuh.</p><div class="photo-preview" id="photoPreview"></div><button class="btn danger" id="clearPhotosBtn" type="button">Hapus foto galeri</button></div>
+        <div class="field"><label for="inPhotos">Tambah foto galeri dari perangkat</label><input id="inPhotos" type="file" accept="image/*" multiple><p class="help">Gunakan foto yang ukurannya wajar agar penyimpanan tidak penuh.</p><div class="photo-preview" id="photoPreview"></div><button class="btn danger" id="clearPhotosBtn" type="button" style="margin-top:8px">Hapus foto galeri</button></div>
       </div>
       <div class="group" data-group="style">
         <h3>Gaya Visual</h3>
@@ -223,18 +223,16 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       </div>
       <div class="group" data-group="extra">
         <h3>Koneksi Online & Publikasi</h3>
-        <div class="field">
-          <label for="apiUrl">URL Web App Google Apps Script (/exec)</label>
-          <input id="apiUrl" type="url" value="https://script.google.com/macros/s/AKfycby9mJdi_mTOitwSVREiWmq0gDybIr22jotKAyFwppTyGpcAKpxpQe1IZJIVT46c9erb/exec">
-          <p class="help" style="color:var(--ok)">URL backend sudah dikombinasikan permanen.</p>
-        </div>
-        <div class="field"><label for="adminKey">Kunci admin (untuk sesi editor)</label><input id="adminKey" type="password" autocomplete="current-password" placeholder="Masukkan ADMIN_KEY dari Properti Skrip"><p class="help">Kunci hanya disimpan selama tab/sesi ini terbuka. Jangan membagikan kunci ini.</p></div>
+        <div class="field"><label for="adminKey">Kunci admin (untuk sesi editor)</label><input id="adminKey" type="password" autocomplete="current-password" placeholder="Masukkan ADMIN_KEY dari Properti Skrip"><p class="help">Kunci hanya disimpan selama tab/sesi ini terbuka. Wajib diisi untuk menyimpan proyek.</p></div>
         <div class="row2"><button class="btn" id="connectBtn" type="button">Tes Koneksi</button><button class="btn" id="listProjectsBtn" type="button">Muat Proyek Online</button></div>
         <div class="field"><label for="projectSelect">Proyek tersimpan</label><select id="projectSelect"><option value="">— Pilih proyek —</option></select></div>
         <div class="row2"><button class="btn" id="loadProjectBtn" type="button">Buka Proyek</button><button class="btn" id="publishBtn" type="button">Publikasikan</button></div>
         <div class="field"><label for="projectTitle">Nama proyek undangan</label><input id="projectTitle" placeholder="Contoh: Pawiwahan Rahayu & Budi"></div>
         <p class="help" id="onlineStatus">Status online: belum dites.</p>
-        <h3>Musik, Hadiah & Publikasi</h3>
+        
+        <hr style="border:0; border-top:1px solid var(--line); margin: 20px 0;">
+        
+        <h3>Musik & Hadiah</h3>
         <div class="field"><label for="inMusic">URL musik gamelan (MP3/OGG)</label><input id="inMusic" type="url" data-bind="music" placeholder="https://.../gamelan.mp3"><p class="help">Gunakan URL audio langsung yang sah. Musik baru dimulai setelah interaksi pengguna.</p></div>
         <div class="field"><label for="inBank">Nama bank / dompet digital</label><input id="inBank" data-bind="bank" value="Bank / Dompet Digital"></div>
         <div class="field"><label for="inOwner">Nama pemilik rekening</label><input id="inOwner" data-bind="owner" value="Nama pemilik rekening"></div>
@@ -243,9 +241,9 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <label class="inline-check"><input type="checkbox" id="toggleAuto"> Aktifkan auto-scroll setelah undangan dibuka</label>
         <div class="field"><label for="inScrollSpeed">Kecepatan auto-scroll</label><select id="inScrollSpeed"><option value="0.5">Pelan</option><option value="1" selected>Normal</option><option value="1.7">Cepat</option></select></div>
         <div class="field"><label for="inShareText">Pesan WhatsApp</label><textarea id="inShareText">Assalamu’alaikum. Dengan penuh rasa syukur, kami mengundang Anda untuk menghadiri pernikahan kami. Mohon doa restunya.</textarea></div>
-        <div class="status">Status: simpan lokal tetap tersedia sebagai cadangan. Koneksi online membutuhkan URL /exec dan ADMIN_KEY yang benar.</div>
+        <div class="status">Status: simpan lokal tetap tersedia sebagai cadangan.</div>
         <audio id="bgMusic" preload="none" loop></audio>
-        <button class="btn" id="musicToggle" type="button">▶ Putar / Jeda Musik</button>
+        <button class="btn" id="musicToggle" type="button" style="margin-bottom:8px">▶ Putar / Jeda Musik</button>
         <button class="btn" id="autoToggle" type="button">⇵ Mulai / Hentikan Auto-scroll</button>
       </div>
     </div>
@@ -293,9 +291,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 (function(){
 'use strict';
 const STORAGE_KEY='jawaWayanganGold_v1';
-const API_URL_KEY='jawaWayanganGold_apiUrl';
-// URL DEFAULT DARI GAS ANDA
-const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycby9mJdi_mTOitwSVREiWmq0gDybIr22jotKAyFwppTyGpcAKpxpQe1IZJIVT46c9erb/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycby9mJdi_mTOitwSVREiWmq0gDybIr22jotKAyFwppTyGpcAKpxpQe1IZJIVT46c9erb/exec';
 
 const $=id=>document.getElementById(id);
 const defaultState={
@@ -317,7 +313,7 @@ const defaultState={
 let state=structuredCloneSafe(defaultState);
 let autoTimer=null,installPrompt=null;
 function structuredCloneSafe(v){return JSON.parse(JSON.stringify(v))}
-function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',2600)}
+function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',3000)}
 function safeText(v){return String(v??'').trim()}
 function formatDate(value,withDay=true){
   if(!value)return 'Tanggal acara belum diatur';
@@ -325,10 +321,7 @@ function formatDate(value,withDay=true){
   return new Intl.DateTimeFormat('id-ID',{weekday:withDay?'long':undefined,day:'numeric',month:'long',year:'numeric'}).format(d);
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function getFieldValue(key){
- const el=document.querySelector('[data-bind="'+key+'"]');
- return el?el.value:state[key];
-}
+
 function readInputs(){
  document.querySelectorAll('[data-bind]').forEach(el=>{state[el.dataset.bind]=el.value});
  state.showMotif=$('toggleMotif').checked;
@@ -349,6 +342,7 @@ function loadInputs(){
  $('inShareText').value=state.shareText||defaultState.shareText;
  renderPhotoPreviews();
 }
+
 function updatePreview(){
  readInputs();
  $('coverGroom').textContent=state.groom||'Nama Mempelai Pria';
@@ -382,6 +376,7 @@ function updatePreview(){
  document.querySelectorAll('.corner').forEach(el=>el.style.display=state.showMotif?'block':'none');
  renderStory();renderGallery();updateCountdown();
 }
+
 function renderStory(){
  const target=$('storyTimeline');
  const rows=(state.story||'').split('\n').map(s=>s.trim()).filter(Boolean);
@@ -392,11 +387,12 @@ function renderStory(){
    return '<div class="timeline-item"><div class="smallcaps">'+escapeHtml(year)+'</div><h4>'+escapeHtml(title)+'</h4><p class="body-copy">'+escapeHtml(desc)+'</p></div>';
  }).join('');
 }
+
 function renderGallery(){
  const grid=$('galleryGrid');
  const photos=Array.isArray(state.photos)?state.photos:[];
  grid.innerHTML='';
- if(!photos.length){grid.innerHTML='<div class="empty-photo" style="grid-column:1/-1">Foto pasangan dapat ditambahkan melalui editor</div>';return}
+ if(!photos.length){grid.innerHTML='<div class="empty-photo">Foto pasangan dapat ditambahkan melalui editor</div>';return}
  photos.forEach((src,i)=>{
    if(typeof src!=='string')return;
    const img=document.createElement('img');img.src=src;img.alt='Foto kenangan '+(i+1);img.loading='lazy';
@@ -404,10 +400,12 @@ function renderGallery(){
    grid.appendChild(img);
  });
 }
+
 function renderPhotoPreviews(){
  const wrap=$('photoPreview');wrap.innerHTML='';
  (state.photos||[]).forEach(src=>{const img=document.createElement('img');img.src=src;img.alt='Pratinjau foto';wrap.appendChild(img)});
 }
+
 function updateCountdown(){
  const target=state.date?new Date(state.date).getTime():NaN;
  if(!Number.isFinite(target)){['cdDays','cdHours','cdMinutes','cdSeconds'].forEach(id=>$(id).textContent='--');return}
@@ -416,6 +414,7 @@ function updateCountdown(){
  $('cdDays').textContent=String(d);$('cdHours').textContent=String(h).padStart(2,'0');$('cdMinutes').textContent=String(m).padStart(2,'0');$('cdSeconds').textContent=String(s).padStart(2,'0');
  $('countdownNote').textContent=target<Date.now()?'Acara telah dimulai atau tanggalnya telah berlalu.':'Kami menantikan doa restu Anda.';
 }
+
 function saveLocal(show=true){
  try{readInputs();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));if(show)toast('Data tersimpan di browser ini.');return true}
  catch(e){toast('Penyimpanan gagal. Kurangi ukuran foto galeri.');return false}
@@ -425,24 +424,22 @@ function loadLocal(){
  catch(e){state=structuredCloneSafe(defaultState)}
  loadInputs();updatePreview();
 }
+
+// --- FUNGSI API BACKEND (TERKUNCI KE GAS_URL) ---
 let adminKeySession='';
 let publicMode=false;
-
-function getApiUrl(){
- return ($('apiUrl').value || localStorage.getItem(API_URL_KEY) || new URLSearchParams(location.search).get('api') || DEFAULT_GAS_URL).trim();
-}
 
 function setOnlineStatus(message,isError=false){
  const el=$('onlineStatus');if(el){el.textContent='Status online: '+message;el.style.color=isError?'#e59a8d':'#a8d5a2'}
 }
+
 function apiUrl(action, params={}){
- const base=getApiUrl();
- if(!base) throw new Error('Masukkan URL Web App /exec pada tab Musik & Lainnya.');
- const u=new URL(base);
+ const u=new URL(GAS_URL);
  u.searchParams.set('action',action);
  Object.keys(params).forEach(k=>u.searchParams.set(k,params[k]));
  return u.toString();
 }
+
 async function apiGet(action, params={}){
  const response=await fetch(apiUrl(action,params),{method:'GET',redirect:'follow',cache:'no-store'});
  if(!response.ok) throw new Error('Server menjawab HTTP '+response.status);
@@ -450,41 +447,38 @@ async function apiGet(action, params={}){
  if(data && data.ok===false) throw new Error(data.error||'Permintaan gagal.');
  return data;
 }
+
 async function apiPost(body){
- const url=getApiUrl();
- if(!url) throw new Error('Masukkan URL Web App /exec pada tab Musik & Lainnya.');
- // text/plain avoids the browser's application/json CORS preflight for Apps Script Web Apps.
- const response=await fetch(url,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+ const response=await fetch(GAS_URL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
  if(!response.ok) throw new Error('Server menjawab HTTP '+response.status);
  const data=await response.json();
  if(data && data.ok===false) throw new Error(data.error||'Permintaan gagal.');
  return data;
 }
+
 function collectProject(){
  readInputs();
  return {...state,id:state.id||'',title:($('projectTitle').value||state.title||('Undangan '+(state.groom||'Jawa')+' & '+(state.bride||''))).trim()};
 }
+
 function applyProject(project){
  state={...structuredCloneSafe(defaultState),...(project||{})};
  $('projectTitle').value=state.title||'';
  loadInputs();updatePreview();saveLocal(false);
 }
+
 async function testConnection(){
  try{
-   if(!$('apiUrl').value.trim()) throw new Error('Masukkan URL /exec terlebih dahulu.');
-   localStorage.setItem(API_URL_KEY,$('apiUrl').value.trim());
    const result=await apiGet('health');
    setOnlineStatus((result.status||'online')+' · '+(result.app||'Backend')+' versi '+(result.version||'?'));
    toast('Koneksi backend berhasil.');
  }catch(e){setOnlineStatus(e.message,true);toast('Koneksi gagal: '+e.message)}
 }
+
 async function saveOnline(){
  try{
-   const url=$('apiUrl').value.trim();
-   if(!url) throw new Error('Masukkan URL Web App /exec di tab Lainnya.');
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
-   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY dari Properti Skrip.');
-   localStorage.setItem(API_URL_KEY,url);
+   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY dari Properti Skrip Google Apps Script.');
    const project=collectProject();
    const result=await apiPost({action:'save',key:adminKeySession,project});
    state.id=result.id;state.title=project.title;
@@ -499,6 +493,7 @@ async function saveOnline(){
    toast('Simpan online gagal. Cadangan lokal disimpan.');
  }
 }
+
 async function refreshProjects(selectId=''){
  try{
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
@@ -515,28 +510,25 @@ async function refreshProjects(selectId=''){
    setOnlineStatus((result.projects||[]).length+' proyek ditemukan di Sheets.');
  }catch(e){setOnlineStatus(e.message,true);toast('Gagal memuat proyek: '+e.message)}
 }
+
 async function loadOnlineProject(){
  try{
    const id=$('projectSelect').value;
    if(!id) throw new Error('Pilih proyek dari daftar terlebih dahulu.');
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
-   const url=getApiUrl();
-   const response=await apiPost({action:'list',key:adminKeySession});
-   const item=(response.projects||[]).find(p=>p.id===id);
-   if(!item) throw new Error('Proyek tidak ditemukan pada daftar.');
-   // Backend intentionally returns project metadata only in list. Retrieve unpublished projects through an authenticated load endpoint.
    const loaded=await apiPost({action:'load',key:adminKeySession,id});
    applyProject(loaded.project);
-   setOnlineStatus('proyek berhasil dimuat: '+item.title);
+   setOnlineStatus('proyek berhasil dimuat.');
    toast('Proyek online berhasil dibuka.');
  }catch(e){setOnlineStatus(e.message,true);toast('Buka proyek gagal: '+e.message)}
 }
+
 async function publishOnline(){
  try{
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
    if(!state.id) {await saveOnline();if(!state.id) return;}
-   const result=await apiPost({action:'publish',key:adminKeySession,id:state.id});
-   const publicUrl=new URL(location.href);publicUrl.search='';publicUrl.hash='';publicUrl.searchParams.set('undangan',state.id);publicUrl.searchParams.set('api',getApiUrl());
+   await apiPost({action:'publish',key:adminKeySession,id:state.id});
+   const publicUrl=new URL(location.href);publicUrl.search='';publicUrl.hash='';publicUrl.searchParams.set('undangan',state.id);
    await navigator.clipboard?.writeText(publicUrl.toString()).catch(()=>{});
    setOnlineStatus('undangan dipublikasikan · tautan: '+publicUrl.toString());
    toast('Undangan dipublikasikan. Tautan publik siap dibagikan.');
@@ -544,9 +536,11 @@ async function publishOnline(){
    await refreshProjects(state.id);
  }catch(e){setOnlineStatus(e.message,true);toast('Publikasi gagal: '+e.message)}
 }
+
 function promptFallbackLink(url){
  const el=$('onlineStatus');if(el){el.textContent='Salin tautan publik ini: '+url;el.style.userSelect='text'}
 }
+
 async function loadPublicInvitation(){
  const params=new URLSearchParams(location.search);
  const id=params.get('undangan');
@@ -566,6 +560,7 @@ async function loadPublicInvitation(){
    return true;
  }catch(e){toast('Undangan online gagal dimuat: '+e.message);return false}
 }
+
 async function loadPublicEntries(action,id){
  try{
    const result=await apiGet(action,{id});
@@ -574,8 +569,9 @@ async function loadPublicEntries(action,id){
      const entries=result.entries||[];
      el.innerHTML=entries.length?entries.map(g=>'<div class="guest-entry"><strong>'+escapeHtml(g.name)+'</strong><br>'+escapeHtml(g.message)+'</div>').join(''):'<p class="body-copy">Jadilah yang pertama menyampaikan doa.</p>';
    }
- }catch(e){/* guestbook list is optional; public invitation should still render */}
+ }catch(e){}
 }
+
 function setActiveTab(tab){
  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
  document.querySelectorAll('.group').forEach(g=>g.classList.toggle('active',g.dataset.group===tab));
@@ -583,15 +579,13 @@ function setActiveTab(tab){
 document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>setActiveTab(btn.dataset.tab)));
 document.querySelectorAll('[data-bind]').forEach(el=>el.addEventListener('input',updatePreview));
 ['toggleMotif','toggleGift','toggleAuto','inScrollSpeed','inShareText'].forEach(id=>$(id).addEventListener('change',updatePreview));
+
 $('saveBtn').addEventListener('click',saveOnline);
 $('saveBottomBtn').addEventListener('click',saveOnline);
 $('connectBtn').addEventListener('click',testConnection);
 $('listProjectsBtn').addEventListener('click',()=>refreshProjects());
 $('loadProjectBtn').addEventListener('click',loadOnlineProject);
 $('publishBtn').addEventListener('click',publishOnline);
-
-// SET INITIAL API URL
-$('apiUrl').value = localStorage.getItem(API_URL_KEY) || new URLSearchParams(location.search).get('api') || DEFAULT_GAS_URL;
 $('adminKey').addEventListener('input',()=>{adminKeySession=$('adminKey').value.trim()});
 $('previewBtn').addEventListener('click',()=>{ $('previewArea').scrollIntoView({behavior:'smooth',block:'start'});toast('Pratinjau undangan');});
 $('resetBtn').addEventListener('click',()=>{
@@ -603,6 +597,7 @@ $('openInviteBtn').addEventListener('click',()=>{
  if(state.music)playMusic();
  if(state.autoScroll)startAutoScroll();
 });
+
 $('inPhotos').addEventListener('change',async ev=>{
  const files=Array.from(ev.target.files||[]).filter(f=>f.type.startsWith('image/'));
  if(!files.length)return;
@@ -618,36 +613,52 @@ $('inPhotos').addEventListener('change',async ev=>{
  ev.target.value='';
 });
 $('clearPhotosBtn').addEventListener('click',()=>{state.photos=[];renderPhotoPreviews();updatePreview();saveLocal(false);toast('Foto galeri dihapus.')});
+
+// FORM RSVP & GUESTBOOK
 $('rsvpForm').addEventListener('submit',async ev=>{
  ev.preventDefault();
  const entry={name:$('rsvpName').value.trim(),status:$('rsvpStatus').value,count:$('rsvpCount').value,message:'',at:new Date().toISOString()};
+ const btn=$('rsvpBtnSubmit'); btn.textContent='MENGIRIM...'; btn.disabled=true;
  try{
    const id=new URLSearchParams(location.search).get('undangan')||state.id;
-   if(publicMode && id){await apiPost({action:'rsvp',id,entry});ev.target.reset();toast('Konfirmasi berhasil dikirim.');return;}
-   const key=STORAGE_KEY+'_rsvp';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.push(entry);localStorage.setItem(key,JSON.stringify(arr));ev.target.reset();toast('Konfirmasi tersimpan di browser ini; buka undangan publik untuk mengirim online.');
+   if(publicMode && id){await apiPost({action:'rsvp',id,entry});ev.target.reset();toast('Konfirmasi berhasil dikirim.');}
+   else{
+     const key=STORAGE_KEY+'_rsvp';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.push(entry);localStorage.setItem(key,JSON.stringify(arr));
+     ev.target.reset();toast('Konfirmasi tersimpan di browser ini (mode editor).');
+   }
  }catch(e){toast('Konfirmasi online gagal: '+e.message)}
+ finally{btn.textContent='KIRIM KONFIRMASI'; btn.disabled=false;}
 });
+
 $('guestForm').addEventListener('submit',async ev=>{
  ev.preventDefault();
  const entry={name:$('guestName').value.trim(),message:$('guestMessage').value.trim(),at:new Date().toISOString()};
+ const btn=$('guestBtnSubmit'); btn.textContent='MENGIRIM...'; btn.disabled=true;
  try{
    const id=new URLSearchParams(location.search).get('undangan')||state.id;
-   if(publicMode && id){await apiPost({action:'guestbook',id,entry});ev.target.reset();await loadPublicEntries('publicGuestbook',id);toast('Ucapan berhasil dikirim.');return;}
-   const key=STORAGE_KEY+'_guests';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.unshift(entry);localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));renderGuestList();ev.target.reset();toast('Ucapan tersimpan di browser ini; buka undangan publik untuk mengirim online.');
+   if(publicMode && id){await apiPost({action:'guestbook',id,entry});ev.target.reset();await loadPublicEntries('publicGuestbook',id);toast('Ucapan berhasil dikirim.');}
+   else {
+     const key=STORAGE_KEY+'_guests';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.unshift(entry);localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));
+     renderGuestList();ev.target.reset();toast('Ucapan tersimpan di browser ini (mode editor).');
+   }
  }catch(e){toast('Ucapan online gagal: '+e.message)}
+ finally{btn.textContent='KIRIM UCAPAN'; btn.disabled=false;}
 });
+
 function renderGuestList(){
  const el=$('guestList');let arr=[];
  try{arr=JSON.parse(localStorage.getItem(STORAGE_KEY+'_guests')||'[]')}catch(e){}
  if(!arr.length){el.innerHTML='<p class="body-copy">Jadilah yang pertama menyampaikan doa.</p>';return}
  el.innerHTML=arr.map(g=>'<div class="guest-entry"><strong>'+escapeHtml(g.name)+'</strong><br>'+escapeHtml(g.message)+'<br><span class="smallcaps">'+escapeHtml(new Date(g.at).toLocaleDateString('id-ID'))+'</span></div>').join('');
 }
+
 $('copyAccountBtn').addEventListener('click',async()=>{
  const value=state.account||'';
  if(!value){toast('Nomor rekening belum diisi.');return}
  try{await navigator.clipboard.writeText(value);toast('Nomor berhasil disalin.')}
  catch(e){const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Nomor berhasil disalin.':'Gagal menyalin nomor.')}
 });
+
 $('shareBtn').addEventListener('click',async()=>{
  readInputs();
  const url=location.href;
@@ -656,15 +667,17 @@ $('shareBtn').addEventListener('click',async()=>{
  const wa='https://wa.me/?text='+encodeURIComponent(text);
  window.open(wa,'_blank','noopener');
 });
+
 const audio=$('bgMusic');
 function syncMusic(){if(audio.src!==(state.music||'')){audio.pause();audio.src=state.music||'';audio.load()}}
 async function playMusic(){
- syncMusic();if(!state.music){toast('Isi URL musik gamelan pada tab Lainnya.');return}
+ syncMusic();if(!state.music){toast('Isi URL musik gamelan pada tab Koneksi & Lainnya.');return}
  try{await audio.play();$('musicToggle').textContent='Ⅱ Jeda Musik'}catch(e){toast('Musik tidak dapat diputar. Periksa URL file audio.')}
 }
 $('musicToggle').addEventListener('click',async()=>{if(audio.paused)await playMusic();else{audio.pause();$('musicToggle').textContent='▶ Putar Musik'}});
 audio.addEventListener('pause',()=>$('musicToggle').textContent='▶ Putar Musik');
 audio.addEventListener('play',()=>$('musicToggle').textContent='Ⅱ Jeda Musik');
+
 function startAutoScroll(){
  stopAutoScroll();const speed=Number(state.scrollSpeed)||1;
  autoTimer=setInterval(()=>{window.scrollBy(0,Math.max(1,speed));if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-2)stopAutoScroll()},30);
@@ -675,12 +688,11 @@ $('autoToggle').addEventListener('click',()=>autoTimer?stopAutoScroll():startAut
 window.addEventListener('wheel',()=>{if(autoTimer)stopAutoScroll()},{passive:true});
 window.addEventListener('touchstart',()=>{if(autoTimer)stopAutoScroll()},{passive:true});
 window.addEventListener('beforeunload',()=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}});
+
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});
 $('installBtn').addEventListener('click',async()=>{if(!installPrompt){toast('Gunakan menu browser Tambahkan ke layar utama.');return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installBtn').hidden=true});
 
-// Initialize App
-loadLocal();
-renderGuestList();
+loadLocal();renderGuestList();
 loadPublicInvitation();
 setInterval(updateCountdown,1000);
 })();
