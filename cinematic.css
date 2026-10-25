@@ -1,0 +1,194 @@
+/* ==========================================
+   MASTER LOCK: CINEMATIC ANIMATIONS & AUTO-SCROLL
+   Versi: v1.0.0
+   Powered by Ari GPM
+   ========================================== */
+
+.cinematic-container {
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Performance Mode: Nonaktifkan efek berat untuk HP kentang */
+body.perf-mode * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+/* --- PILIHAN ANIMASI --- */
+
+/* 1. Fade In */
+[data-anim="fade-in"] {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+[data-anim="fade-in"].active {
+    opacity: 1;
+}
+
+/* 2. Rise Up */
+[data-anim="rise-up"] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+[data-anim="rise-up"].active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. Float */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+[data-anim="float"].active {
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* 4. Zoom In */
+[data-anim="zoom-in"] {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+[data-anim="zoom-in"].active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 5. Blur Reveal */
+[data-anim="blur-reveal"] {
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 1s ease, filter 1s ease;
+}
+[data-anim="blur-reveal"].active {
+    opacity: 1;
+    filter: blur(0);
+}
+
+/* 6. Slide */
+[data-anim="slide"] {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+[data-anim="slide"].active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 7. Petal Fall */
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+}
+.petal {
+    position: fixed;
+    top: -10vh;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #ffb6c1, #ff69b4);
+    border-radius: 50% 0 50% 50%;
+    pointer-events: none;
+    animation: fall linear infinite;
+    z-index: 999;
+}
+
+/* 8. Sparkle */
+@keyframes sparkling {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+.sparkle-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffd700;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 8px #ffd700;
+    animation: sparkling 1.5s ease-in-out infinite;
+    z-index: 999;
+}
+
+/* 9. Curtain Opening Khusus Tema Jawa */
+.javanese-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    pointer-events: none;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.curtain-left, .curtain-right {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #2b1d0c 0%, #4a3319 100%);
+    border-right: 3px solid #d4af37;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.curtain-right {
+    border-right: none;
+    border-left: 3px solid #d4af37;
+}
+.cinematic-open .curtain-left {
+    transform: translateX(-100%);
+}
+.cinematic-open .curtain-right {
+    transform: translateX(100%);
+}
+
+/* 10. Cinematic Bars */
+.cinematic-bar-top, .cinematic-bar-bottom {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #000;
+    z-index: 9998;
+    transition: height 0.8s ease;
+    pointer-events: none;
+}
+.cinematic-bar-top { top: 0; }
+.cinematic-bar-bottom { bottom: 0; }
+.cinematic-active .cinematic-bar-top,
+.cinematic-active .cinematic-bar-bottom {
+    height: 8vh;
+}
+
+/* --- FLOATING CONTROL PANEL --- */
+.cinematic-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 12px;
+    border-radius: 30px;
+    backdrop-filter: blur(6px);
+}
+.cinematic-controls button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+.cinematic-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
