@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jawa-wayangan-v1.1';
+const CACHE_NAME = 'jawa-wayangan-v4.9.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
