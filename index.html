@@ -4,16 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#11100e">
-<meta name="description" content="Jawa Wayangan Gold — editor undangan digital tradisional Jawa.">
-<title>Jawa Wayangan Gold — Editor Undangan</title>
-<!-- Icon & Logo untuk PWA / Tab Browser -->
-<link rel="icon" type="image/png" href="logoundanganwayang.png">
-<link rel="apple-touch-icon" href="logoundanganwayang.png">
+<meta name="description" content="Jawa Wayangan Gold Studio — editor undangan digital tradisional Jawa versi 4.9.0.">
+<title>Jawa Wayangan Gold — Studio Undangan v3.4.0</title>
 <style>
 :root{
   --bg:#11100e;--panel:#1b1814;--panel2:#242019;--gold:#d4af62;--gold2:#f2d58a;
   --gold3:#a77b32;--cream:#f1e2c3;--paper:#fff7e8;--ink:#49321e;--muted:#b9ab91;
-  --line:rgba(212,175,98,.35);--danger:#e59a8d;--ok:#a8d5a2;--radius:18px;
+  --line:rgba(212,175,98,.35);--danger:#e59a8d;--ok:#a8d5a2;--radius:18px;--coverTextColor:#f2d58a;--coverFont:Georgia,serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -23,7 +20,7 @@ button{cursor:pointer}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
 .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:rgba(17,16,14,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;color:var(--gold2);font-size:22px;flex-shrink:0; background: url('logoundanganwayang.png') center/cover}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;color:var(--gold2);font-size:22px;flex-shrink:0}
 .brand h1{font-family:Georgia,serif;font-size:16px;margin:0;color:var(--gold2);letter-spacing:.04em}
 .brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .top-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
@@ -32,7 +29,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .btn.ghost{background:transparent}
 .btn.danger{border-color:#85463b;color:#ffc4b8}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.app{display:grid;grid-template-columns:minmax(300px,410px) minmax(0,1fr);gap:18px;padding:18px;max-width:1500px;margin:auto}
+.studio-dashboard{max-width:1500px;margin:16px auto 0;padding:16px;background:rgba(27,24,20,.95);border:1px solid var(--line);border-radius:var(--radius)}
+.dashboard-filters input,.dashboard-filters select{flex:1;min-width:180px;max-width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#15130f;color:var(--text);font:inherit;font-size:12px}.dashboard-summary{gap:8px}.summary-chip{border:1px solid var(--line);background:#15130f;border-radius:999px;padding:7px 10px;color:var(--muted);font-size:11px}.summary-chip b{color:var(--gold2);margin-right:4px}.studio-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.studio-head h2{font-family:Georgia,serif;color:var(--gold2);font-size:20px;margin:0 0 5px}.studio-head p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}.studio-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0;font-size:11px;color:var(--muted)}.studio-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.studio-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#15130f;min-width:0}.studio-card h3{margin:0 0 7px;color:var(--gold2);font-size:14px;overflow-wrap:anywhere}.studio-card p{margin:4px 0;color:var(--muted);font-size:11px;line-height:1.5;overflow-wrap:anywhere}.studio-card .btn{margin-top:8px;width:100%}.studio-empty{font-size:12px;color:var(--muted);padding:10px 0}.app{display:grid;grid-template-columns:minmax(300px,410px) minmax(0,1fr);gap:18px;padding:18px;max-width:1500px;margin:auto}
 .editor{background:rgba(27,24,20,.95);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;align-self:start}
 .editor-head{padding:17px 18px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#211b12,#151310)}
 .editor-head h2{font-family:Georgia,serif;color:var(--gold2);font-size:20px;margin:0 0 5px}
@@ -50,7 +48,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .field input[type="color"]{padding:4px;height:44px}
 .field input[type="checkbox"]{width:auto;min-height:auto;accent-color:var(--gold)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.help{font-size:11px;color:var(--muted);line-height:1.5;margin:6px 0 0}
+.help{font-size:11px;color:var(--muted);line-height:1.5;margin:6px 0 0}.section-toggles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:8px 0 14px}.section-toggles label{display:flex;align-items:center;gap:7px;padding:9px;border:1px solid #4d402c;border-radius:9px;background:#100f0d;font-size:11px;color:#e5d4b4}.section-toggles input{accent-color:var(--gold)}
 .inline-check{display:flex;align-items:center;gap:8px;color:var(--cream);font-size:12px;margin:10px 0}
 .editor-bottom{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:#171511}
 .editor-bottom .btn{flex:1}
@@ -68,10 +66,10 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .corner.tl{top:20px;left:22px}.corner.tr{top:20px;right:22px;transform:scaleX(-1)}
 .corner.bl{bottom:20px;left:22px;transform:scaleY(-1)}.corner.br{bottom:20px;right:22px;transform:scale(-1)}
 .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#d6bd81;margin-top:10px;position:relative;z-index:1}
-.cover-title{font-family:Georgia,serif;font-size:clamp(26px,5vw,42px);font-weight:500;line-height:1.2;margin:8px 0;color:var(--gold2);position:relative;z-index:1;text-shadow:0 2px 15px #d4af6233}
+.cover-title{font-family:var(--coverFont);font-size:clamp(26px,5vw,42px);font-weight:500;line-height:1.2;margin:8px 0;color:var(--coverTextColor);position:relative;z-index:1;text-shadow:0 2px 15px #d4af6233}
 .wayangan{position:relative;z-index:1;width:min(90%,330px);height:270px;display:grid;place-items:center;margin:4px auto}
 .wayangan svg{width:100%;height:100%;filter:drop-shadow(0 0 14px #d4af6222)}
-.couple-names{font-family:Georgia,serif;font-size:clamp(24px,5vw,37px);line-height:1.25;margin:4px 0;color:#f5dfa0;position:relative;z-index:1;overflow-wrap:anywhere}
+.couple-names{font-family:var(--coverFont);font-size:clamp(24px,5vw,37px);line-height:1.25;margin:4px 0;color:var(--coverTextColor);position:relative;z-index:1;overflow-wrap:anywhere}
 .couple-names .amp{display:block;font-style:italic;font-size:.65em;color:#bd9449;margin:3px}
 .cover-date{font-size:12px;letter-spacing:.14em;color:#e3d0a4;margin:12px 0 18px;position:relative;z-index:1}
 .open-btn{position:relative;z-index:2;border:1px solid var(--gold2);background:linear-gradient(135deg,#f3d98e,#bd8d3d);color:#21170a;font-weight:800;letter-spacing:.09em;padding:13px 22px;border-radius:4px;box-shadow:0 5px 18px #0005}
@@ -92,13 +90,13 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:370px;margin:20px auto}
 .count-box{background:#211a11;color:#f2d58a;padding:12px 4px;border-radius:8px}
 .count-box b{display:block;font-size:22px}.count-box small{font-size:9px;letter-spacing:.08em}
-.action-link{display:inline-block;text-decoration:none;background:#241c11;color:#f2d58a;padding:11px 16px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px;border:1px solid #bd9449; width: 100%; text-align: center;}
+.action-link{display:inline-block;text-decoration:none;background:#241c11;color:#f2d58a;padding:11px 16px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px;border:1px solid #bd9449}
 .timeline{max-width:400px;margin:10px auto;text-align:left;border-left:2px solid #bd9449;padding-left:18px}
 .timeline-item{position:relative;margin:0 0 20px}.timeline-item:before{content:"";position:absolute;left:-25px;top:4px;width:10px;height:10px;background:#bd9449;border-radius:50%;box-shadow:0 0 0 4px #bd944933}
 .timeline-item h4{margin:0 0 5px;font-family:Georgia,serif;color:#704c1e}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:420px;margin:16px auto}
-.gallery img{width:100%;height:155px;object-fit:cover;border:3px solid #d1b16d;border-radius:4px;background:#e6d6b5; cursor:pointer;}
-.gallery .empty-photo{height:130px;border:1px dashed #bd9449;display:grid;place-items:center;color:#97763b;font-size:12px;padding:10px; grid-column: 1/-1;}
+.gallery img{width:100%;height:155px;object-fit:cover;border:3px solid #d1b16d;border-radius:4px;background:#e6d6b5}
+.gallery .empty-photo{height:130px;border:1px dashed #bd9449;display:grid;place-items:center;color:#97763b;font-size:12px;padding:10px}
 .form-public{max-width:400px;margin:12px auto;text-align:left}
 .form-public label{display:block;font-size:12px;margin:10px 0 5px}
 .form-public input,.form-public textarea,.form-public select{width:100%;padding:11px;border:1px solid #c8a765;border-radius:8px;background:#fffaf0;color:#49321e}
@@ -112,28 +110,130 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .status{font-size:11px;color:var(--muted);line-height:1.5}
 .photo-preview{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
 .photo-preview img{width:62px;height:62px;object-fit:cover;border:1px solid var(--gold3);border-radius:8px}
-@media(max-width:900px){.app{grid-template-columns:1fr;padding:10px;gap:14px}.form-area{max-height:none}.preview-wrap{order:1}.editor{order:2}.preview-heading{margin:0 3px 9px}.preview-shell{padding:6px}.cover{min-height:690px}.invite{min-height:0}}
+.photo-item{width:100%;display:flex;align-items:center;gap:10px;padding:9px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:rgba(255,255,255,.025)}
+.photo-item img{width:68px;height:76px;flex:0 0 68px;object-fit:cover;border:1px solid var(--gold3);border-radius:8px}
+.photo-item-actions{display:flex;flex-wrap:wrap;gap:5px;min-width:0}
+.photo-item-actions .btn{padding:7px 9px;font-size:11px}
+.photo-item-meta{flex:1;min-width:0;font-size:12px;color:var(--muted)}
+.profile-photo-field{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px;border:1px solid var(--line);border-radius:12px;margin:8px 0}
+.profile-photo-thumb{width:76px;height:76px;object-fit:cover;border-radius:50%;border:2px solid var(--gold3);background:#20190f;display:block}
+.profile-photo-placeholder{width:76px;height:76px;border-radius:50%;border:2px dashed var(--gold3);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;text-align:center;flex:0 0 76px}
+.profile-photo-controls{flex:1;min-width:180px}
+.profile-photo-controls input{width:100%;font-size:12px;margin:6px 0}
+.couple-profile-photo{width:112px;height:112px;object-fit:cover;border-radius:50%;border:3px solid var(--gold3);padding:3px;background:#21170a;display:block;margin:0 auto 12px;box-shadow:0 6px 18px #0003}
+.profile-style-controls{margin-top:12px}.profile-style-controls input[type="range"]{width:100%;padding:0}.couple-profile-photo.shape-rounded{border-radius:18px}.couple-profile-photo.shape-oval{border-radius:50% / 38%}.profile-photo-thumb.shape-rounded{border-radius:14px}.profile-photo-thumb.shape-oval{border-radius:50% / 38%}
+.couple-profile-photo.frame-double,.profile-photo-thumb.frame-double{border:5px double #a77b32;outline:1px solid #e8cd83;outline-offset:2px}.couple-profile-photo.frame-minimal,.profile-photo-thumb.frame-minimal{border:2px solid #d7b65e;padding:2px;box-shadow:0 0 0 3px #fff4d8,0 0 0 5px #b88b39}.couple-profile-photo.frame-none,.profile-photo-thumb.frame-none{border:0;padding:0;box-shadow:none;background:transparent}
+.couple-profile-photo[hidden]{display:none!important}
+@media(max-width:900px){.studio-dashboard{margin:12px;padding:12px}.studio-head{align-items:flex-start}.app{grid-template-columns:1fr;padding:10px;gap:14px}.form-area{max-height:none}.preview-wrap{order:1}.editor{order:2}.preview-heading{margin:0 3px 9px}.preview-shell{padding:6px}.cover{min-height:690px}.invite{min-height:0}}
 @media(min-width:901px){.preview-wrap{position:sticky;top:82px;align-self:start}.invite{max-height:calc(100dvh - 130px);overflow:auto}.cover{min-height:calc(100dvh - 150px);max-height:850px}}
 @media(max-width:420px){.topbar{padding:10px}.brand h1{font-size:14px}.brand-mark{width:36px;height:36px}.top-actions .btn{padding:8px;font-size:11px}.row2{grid-template-columns:1fr}.cover{min-height:650px;padding-left:14px;padding-right:14px}.wayangan{height:225px}.content-section{padding:34px 16px}.section-title{font-size:23px}.count-box b{font-size:19px}}
+body.customer-preview #studioDashboard,body.customer-preview #templateGallery,body.customer-preview #editorPanel{display:none!important}
+body.customer-preview .topbar{position:sticky;top:0;z-index:1000}
+body.customer-preview .top-actions{display:none!important}
+body.customer-preview .app{display:block;max-width:760px;margin:0 auto;padding:10px}
+body.customer-preview .preview-wrap{position:static;max-width:100%;margin:0}
+body.customer-preview .preview-heading span{font-size:12px}
+#exitCustomerPreview{display:none;position:fixed;right:14px;top:14px;z-index:2000;box-shadow:0 4px 18px #0008}
+body.customer-preview #exitCustomerPreview{display:block}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* v2.7.0: efek gerak undangan yang dapat dipilih */
+@keyframes inviteFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes inviteSlideIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes inviteZoomIn{from{opacity:0;transform:scale(.965)}to{opacity:1;transform:scale(1)}}
+.invite.anim-fade .content-section{animation:inviteFadeUp .75s ease both}
+.invite.anim-slide .content-section{animation:inviteSlideIn .7s ease both}
+.invite.anim-zoom .content-section{animation:inviteZoomIn .7s ease both}
+.invite.anim-fade .content-section:nth-child(2),.invite.anim-slide .content-section:nth-child(2),.invite.anim-zoom .content-section:nth-child(2){animation-delay:.06s}
+.invite.anim-fade .content-section:nth-child(3),.invite.anim-slide .content-section:nth-child(3),.invite.anim-zoom .content-section:nth-child(3){animation-delay:.12s}
+.invite.anim-fade .content-section:nth-child(4),.invite.anim-slide .content-section:nth-child(4),.invite.anim-zoom .content-section:nth-child(4){animation-delay:.18s}
+
+/* v3.4.0: bentuk foto profil dan pengaturan ukuran */
+
+/* v3.8.0: pasangan tipografi yang dapat dipilih */
+.invite{--headingFont:Georgia,serif;--nameFont:Georgia,serif;--bodyFont:Arial,sans-serif;--coverTitleSize:36px;--coupleNameSize:32px;--sectionTitleSize:25px;--personNameSize:24px;--coverTitleWeight:500;--nameWeight:500;--titleSpacing:0px;--nameSpacing:0px}
+.invite .cover-title{font-size:var(--coverTitleSize)!important;font-weight:var(--coverTitleWeight)!important;letter-spacing:var(--titleSpacing)!important}
+.invite .couple-names{font-size:var(--coupleNameSize)!important;font-weight:var(--nameWeight)!important;letter-spacing:var(--nameSpacing)!important}
+.invite .section-title{font-size:var(--sectionTitleSize)!important}
+.invite .person-name{font-size:var(--personNameSize)!important;font-weight:var(--nameWeight)!important;letter-spacing:var(--nameSpacing)!important}
+.invite .section-title,.invite .info-card strong,.invite .timeline-item h4{font-family:var(--headingFont)}
+.invite .person-name{font-family:var(--nameFont)}
+.invite .body-copy,.invite .timeline-item p,.invite .info-card,.invite .footer-note p{font-family:var(--bodyFont)}
+/* v3.7.0: preset palet warna */
+.preset-panel{border:1px solid var(--line);border-radius:12px;padding:12px;margin:14px 0;background:#15130f}.preset-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.preset-actions input{flex:1;min-width:130px;padding:10px;border:1px solid var(--line);border-radius:9px;background:#100f0d;color:var(--text)}.preset-list{display:grid;gap:8px;margin-top:10px}.preset-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #4d402c;border-radius:10px;padding:9px;background:#100f0d}.preset-item strong{font-size:12px;overflow-wrap:anywhere}.preset-item small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.preset-item-actions{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap}.preset-item-actions .btn{padding:7px 8px;min-height:32px;font-size:10px}.preset-empty{font-size:11px;color:var(--muted);padding:6px 0}
+.palette-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 12px}.palette-btn{display:flex;align-items:center;gap:9px;text-align:left;border:1px solid var(--line);border-radius:10px;background:#15130f;color:var(--text);padding:9px;min-height:48px;font-size:11px}.palette-btn[aria-pressed="true"]{border-color:var(--gold2);box-shadow:0 0 0 1px var(--gold2)}.palette-swatches{display:flex;gap:3px;flex-shrink:0}.palette-swatches i{display:block;width:13px;height:25px;border-radius:4px;border:1px solid #ffffff33}.palette-btn span:last-child{font-weight:650}
+/* v3.7.0: tema dekorasi undangan */
+.invite.theme-ukiran .content-section{position:relative;border-left:1px solid rgba(180,133,49,.28);border-right:1px solid rgba(180,133,49,.28)}
+.invite.theme-ukiran .content-section::before{content:"꧁ ༺ ❖ ༻ ꧂";display:block;text-align:center;color:var(--gold);font-size:13px;letter-spacing:.08em;margin:0 auto 8px;opacity:.85}
+.invite.theme-floral .content-section{background-image:radial-gradient(circle at 8% 12%,rgba(196,135,151,.10) 0 3px,transparent 4px),radial-gradient(circle at 92% 88%,rgba(196,135,151,.10) 0 3px,transparent 4px)}
+.invite.theme-floral .motif{color:#b77a8d}
+.invite.theme-minimal .content-section{box-shadow:none;border-top:1px solid rgba(180,133,49,.18)}
+.invite.theme-minimal .motif{font-size:13px!important;opacity:.65}
+.invite.theme-geometric .content-section{outline:1px solid rgba(180,133,49,.18);outline-offset:-8px}
+.invite.theme-stars .motif{ text-shadow:0 0 10px rgba(212,175,98,.35)}
+
+
+.order-checklist{display:grid;gap:8px;margin-top:8px}
+.order-check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.025);cursor:pointer}
+.order-check-item input{width:18px;height:18px;min-width:18px;margin-top:2px;accent-color:var(--gold)}
+.order-check-item span{line-height:1.35}
+.order-check-progress{height:8px;background:rgba(160,160,160,.2);border-radius:99px;overflow:hidden;margin:8px 0}
+.order-check-progress>span{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+.order-check-summary{font-size:.86rem;color:var(--muted)}
 </style>
 </head>
 <body>
+<button id="exitCustomerPreview" class="btn primary" type="button">← Kembali ke Studio</button>
 <header class="topbar">
   <div class="brand">
-    <div class="brand-mark" aria-hidden="true"></div>
-    <div><h1>JAWA WAYANGAN GOLD</h1><small>EDITOR UNDANGAN · v1.1.0 + PWA</small></div>
+    <div class="brand-mark" aria-hidden="true">♜</div>
+    <div><h1>JAWA WAYANGAN GOLD</h1><small>STUDIO UNDANGAN · v4.6.0</small></div>
   </div>
   <div class="top-actions">
-    <button class="btn ghost" id="installBtn" hidden>＋ Instal Aplikasi</button>
+    <button class="btn ghost" id="installBtn" hidden>＋ Instal</button>
     <button class="btn" id="previewBtn">Pratinjau</button>
+    <button class="btn" id="customerPreviewBtn" type="button">Mode Pelanggan</button>
     <button class="btn primary" id="saveBtn">Simpan Online</button>
   </div>
 </header>
 
+<section class="studio-dashboard" id="studioDashboard">
+  <div class="studio-head"><div><h2>Studio Undangan</h2><p>Kelola pesanan pelanggan, buka proyek lama, atau mulai undangan baru.</p></div><button class="btn primary" id="newProjectBtn" type="button">＋ Proyek Baru</button></div>
+  <div class="studio-tools"><button class="btn" id="dashboardRefreshBtn" type="button">↻ Muat Proyek Online</button><span id="dashboardStatus">Hubungkan backend untuk melihat daftar proyek online.</span></div>
+  <div class="studio-tools dashboard-filters">
+    <input id="projectSearch" type="search" placeholder="Cari judul, pelanggan, atau jenis acara…" aria-label="Cari proyek" />
+    <select id="projectStatusFilter" aria-label="Filter status pesanan"><option value="">Semua status</option><option>Pesanan Baru</option><option>Dalam Pengerjaan</option><option>Menunggu Revisi</option><option>Siap Dikirim</option><option>Selesai</option><option value="__published">Sudah Dipublikasikan</option><option value="__draft">Draft</option></select>
+    <select id="projectDueFilter" aria-label="Filter target selesai"><option value="">Semua target selesai</option><option value="overdue">Target terlewat</option><option value="today">Target hari ini</option><option value="next7">7 hari ke depan</option><option value="none">Belum ada target</option></select>
+    <select id="projectSortFilter" aria-label="Urutkan proyek"><option value="updated">Terbaru diperbarui</option><option value="due">Target terdekat</option><option value="title">Nama proyek A–Z</option></select>
+  </div>
+  <div class="studio-tools dashboard-summary" id="dashboardSummary" aria-live="polite">Ringkasan pesanan akan tampil setelah proyek dimuat.</div>
+  <div class="studio-dashboard" id="financeReportPanel" style="margin:10px 0;padding:14px;background:#191610">
+    <div class="studio-head"><div><h2 style="font-size:17px">Laporan Keuangan</h2><p>Filter berdasarkan tanggal pembayaran terakhir yang dicatat pada setiap proyek.</p></div><button class="btn" id="exportFinanceCsvBtn" type="button">Ekspor CSV</button></div>
+    <div class="studio-tools dashboard-filters"><label class="field" style="margin:0;min-width:140px;flex:1">Dari tanggal pembayaran<input id="financeDateFrom" type="date" aria-label="Dari tanggal pembayaran"></label><label class="field" style="margin:0;min-width:140px;flex:1">Sampai tanggal pembayaran<input id="financeDateTo" type="date" aria-label="Sampai tanggal pembayaran"></label><button class="btn" id="clearFinanceDatesBtn" type="button">Hapus Filter</button></div>
+    <div class="studio-tools dashboard-summary" id="financeReportSummary" aria-live="polite">Laporan akan tampil setelah proyek online dimuat.</div>
+    <p class="help">Catatan: laporan ini merangkum nilai pembayaran terakhir per proyek, bukan daftar transaksi cicilan. Proyek lama tanpa tanggal pembayaran hanya masuk laporan ketika filter tanggal dikosongkan.</p>
+  </div>
+  <div class="studio-cards" id="studioProjectCards"><div class="studio-empty">Daftar proyek akan tampil di sini setelah koneksi online berhasil.</div></div>
+</section>
+<section class="studio-dashboard template-gallery" id="templateGallery">
+  <div class="studio-head"><div><h2>Galeri Template</h2><p>Pilih gaya awal sesuai acara pelanggan. Pilihan ini mengatur kategori, judul, dan palet desain; data lainnya tetap bisa diedit.</p></div></div>
+  <div class="studio-tools dashboard-filters" aria-label="Cari dan filter template">
+    <input id="templateSearch" type="search" placeholder="Cari nama atau gaya template…" aria-label="Cari template" />
+    <select id="templateCategoryFilter" aria-label="Filter kategori template"><option value="">Semua kategori</option><option value="Pernikahan">Pernikahan</option><option value="Khitan">Khitan</option><option value="Ulang Tahun">Ulang Tahun</option><option value="Aqiqah">Aqiqah</option><option value="Peresmian">Peresmian & Acara Resmi</option></select>
+  </div>
+  <div class="studio-tools" id="templateFilterStatus" aria-live="polite">Menampilkan 6 template.</div>
+  <div class="studio-cards" id="templateCards">
+    <article class="studio-card" data-template-card data-category="Pernikahan" data-search="pawiwahan jawa tradisional hitam emas adat"><h3>꧁ Pawiwahan Jawa</h3><p>Hitam, emas, motif tradisional.</p><button class="btn" type="button" data-template="jawa">Gunakan Template</button></article>
+    <article class="studio-card" data-template-card data-category="Pernikahan" data-search="pernikahan modern wedding ivory champagne elegan"><h3>✦ Pernikahan Modern</h3><p>Ivory dan champagne yang elegan.</p><button class="btn" type="button" data-template="modern">Gunakan Template</button></article>
+    <article class="studio-card" data-template-card data-category="Khitan" data-search="khitan berkah hijau zamrud emas"><h3>🌙 Khitan Berkah</h3><p>Hijau zamrud dan emas.</p><button class="btn" type="button" data-template="khitan">Gunakan Template</button></article>
+    <article class="studio-card" data-template-card data-category="Ulang Tahun" data-search="ulang tahun birthday ceria ungu perayaan"><h3>🎂 Ulang Tahun Ceria</h3><p>Ungu dan warna perayaan.</p><button class="btn" type="button" data-template="birthday">Gunakan Template</button></article>
+    <article class="studio-card" data-template-card data-category="Aqiqah" data-search="aqiqah natural hijau lembut krem"><h3>🌿 Aqiqah Natural</h3><p>Hijau lembut dan krem.</p><button class="btn" type="button" data-template="aqiqah">Gunakan Template</button></article>
+    <article class="studio-card" data-template-card data-category="Peresmian" data-search="acara peresmian resmi formal biru emas"><h3>🏛️ Acara & Peresmian</h3><p>Biru gelap dan emas resmi.</p><button class="btn" type="button" data-template="formal">Gunakan Template</button></article>
+  </div>
+</section>
 <main class="app">
   <section class="preview-wrap" id="previewArea">
-    <div class="preview-heading"><h2>Pratinjau Undangan</h2><span>Versi 1.1.0 · Integrasi backend</span></div>
+    <div class="preview-heading"><h2>Pratinjau Undangan</h2><span>Versi 2.4.0 · Pratinjau visual</span></div>
     <div class="preview-shell">
       <article class="invite" id="invite">
         <section class="cover" id="cover">
@@ -167,16 +267,16 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         </section>
         <div class="content" id="inviteContent">
           <section class="content-section" id="sec-opening"><div class="motif">❧ ✦ ❧</div><h2 class="section-title">Assalamu’alaikum Warahmatullahi Wabarakatuh</h2><p class="body-copy" id="openingText">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.</p><div class="motif">꧁ ❖ ꧂</div></section>
-          <section class="content-section" id="sec-couple"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Kedua Mempelai</h2><div class="name-card"><div class="smallcaps">Mempelai Pria</div><div class="person-name" id="groomName">Budi Santoso</div><p class="body-copy" id="groomParents">Putra dari Bapak Sutrisno & Ibu Sumarni</p></div><div class="motif" style="font-size:28px">❦</div><div class="name-card"><div class="smallcaps">Mempelai Wanita</div><div class="person-name" id="brideName">Rahayu Ningrum</div><p class="body-copy" id="brideParents">Putri dari Bapak Slamet & Ibu Wagiyem</p></div></section>
+          <section class="content-section" id="sec-couple"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Kedua Mempelai</h2><div class="name-card"><img class="couple-profile-photo" id="groomProfilePreview" alt="Foto mempelai pria" hidden><div class="smallcaps">Mempelai Pria</div><div class="person-name" id="groomName">Budi Santoso</div><p class="body-copy" id="groomParents">Putra dari Bapak Sutrisno & Ibu Sumarni</p></div><div class="motif" style="font-size:28px">❦</div><div class="name-card"><img class="couple-profile-photo" id="brideProfilePreview" alt="Foto mempelai wanita" hidden><div class="smallcaps">Mempelai Wanita</div><div class="person-name" id="brideName">Rahayu Ningrum</div><p class="body-copy" id="brideParents">Putri dari Bapak Slamet & Ibu Wagiyem</p></div></section>
           <section class="content-section" id="sec-countdown"><div class="motif">✦ ꧁ ✦</div><h2 class="section-title">Menuju Hari Bahagia</h2><div class="countdown"><div class="count-box"><b id="cdDays">00</b><small>HARI</small></div><div class="count-box"><b id="cdHours">00</b><small>JAM</small></div><div class="count-box"><b id="cdMinutes">00</b><small>MENIT</small></div><div class="count-box"><b id="cdSeconds">00</b><small>DETIK</small></div></div><p class="body-copy" id="countdownNote">Kami menantikan doa restu Anda.</p></section>
           <section class="content-section" id="sec-events"><div class="motif">❧ ❖ ❧</div><h2 class="section-title">Rangkaian Acara</h2><div class="info-card"><strong>Akad Nikah</strong><p class="body-copy" id="akadInfo">Sabtu, 16 November 2026<br>Pukul 09.00 WIB</p></div><div class="info-card"><strong>Resepsi</strong><p class="body-copy" id="receptionInfo">Sabtu, 16 November 2026<br>Pukul 11.00–14.00 WIB</p></div></section>
           <section class="content-section" id="sec-location"><div class="motif">⌖ ✦ ⌖</div><h2 class="section-title">Lokasi Acara</h2><div class="info-card"><strong id="venueName">Pendopo Sasana Mulyo</strong><p class="body-copy" id="venueAddress">Jl. Melati No. 8, Desa Sukamaju</p><a class="action-link" id="mapsLink" href="https://maps.google.com" target="_blank" rel="noopener">BUKA GOOGLE MAPS ↗</a></div></section>
           <section class="content-section" id="sec-story"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Kisah Kami</h2><div class="timeline" id="storyTimeline"><div class="timeline-item"><h4>Awal Pertemuan</h4><p class="body-copy">Sebuah pertemuan sederhana menjadi awal cerita kami.</p></div><div class="timeline-item"><h4>Hari Lamaran</h4><p class="body-copy">Dengan restu keluarga, kami melangkah menuju hari bahagia.</p></div><div class="timeline-item"><h4>Hari Pernikahan</h4><p class="body-copy">Memulai perjalanan baru dalam ikatan suci.</p></div></div></section>
           <section class="content-section" id="sec-gallery"><div class="motif">❦ ✦ ❦</div><h2 class="section-title">Galeri Kenangan</h2><div class="gallery" id="galleryGrid"><div class="empty-photo">Foto pasangan dapat ditambahkan melalui editor</div></div></section>
-          <section class="content-section" id="sec-rsvp"><div class="motif">✦ ꧁ ✦</div><h2 class="section-title">Konfirmasi Kehadiran</h2><p class="body-copy">Mohon berikan konfirmasi dan doa restu.</p><form class="form-public" id="rsvpForm"><label for="rsvpName">Nama</label><input id="rsvpName" required maxlength="100" placeholder="Nama Anda"><label for="rsvpStatus">Konfirmasi</label><select id="rsvpStatus"><option>Hadir</option><option>Tidak dapat hadir</option><option>Belum pasti</option></select><label for="rsvpCount">Jumlah tamu</label><select id="rsvpCount"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="action-link" id="rsvpBtnSubmit" type="submit">KIRIM KONFIRMASI</button><p class="help" style="color:#85673a">RSVP ini tersambung online dengan Google Sheets dan tersimpan lokal.</p></form></section>
-          <section class="content-section" id="sec-guestbook"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Ucapan & Doa</h2><form class="form-public" id="guestForm"><label for="guestName">Nama</label><input id="guestName" required maxlength="100" placeholder="Nama Anda"><label for="guestMessage">Ucapan dan doa</label><textarea id="guestMessage" required maxlength="500" placeholder="Tuliskan ucapan terbaik..."></textarea><button class="action-link" id="guestBtnSubmit" type="submit">KIRIM UCAPAN</button></form><div id="guestList" class="form-public"><p class="body-copy">Jadilah yang pertama menyampaikan doa.</p></div></section>
+          <section class="content-section" id="sec-rsvp"><div class="motif">✦ ꧁ ✦</div><h2 class="section-title">Konfirmasi Kehadiran</h2><p class="body-copy">Mohon berikan konfirmasi dan doa restu.</p><form class="form-public" id="rsvpForm"><label for="rsvpName">Nama</label><input id="rsvpName" required maxlength="100" placeholder="Nama Anda"><label for="rsvpStatus">Konfirmasi</label><select id="rsvpStatus"><option>Hadir</option><option>Tidak dapat hadir</option><option>Belum pasti</option></select><label for="rsvpCount">Jumlah tamu</label><select id="rsvpCount"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="action-link" type="submit">KIRIM KONFIRMASI</button><p class="help" style="color:#85673a">Konfirmasi pada versi ini tetap mengikuti konfigurasi penyimpanan backend yang tersedia.</p></form></section>
+          <section class="content-section" id="sec-guestbook"><div class="motif">꧁ ༺ ❖ ༻ ꧂</div><h2 class="section-title">Ucapan & Doa</h2><form class="form-public" id="guestForm"><label for="guestName">Nama</label><input id="guestName" required maxlength="100" placeholder="Nama Anda"><label for="guestMessage">Ucapan dan doa</label><textarea id="guestMessage" required maxlength="500" placeholder="Tuliskan ucapan terbaik..."></textarea><button class="action-link" type="submit">KIRIM UCAPAN</button></form><div id="guestList" class="form-public"><p class="body-copy">Jadilah yang pertama menyampaikan doa.</p></div></section>
           <section class="content-section" id="sec-gift"><div class="motif">❧ ✦ ❧</div><h2 class="section-title">Tanda Kasih</h2><p class="body-copy">Doa restu Anda merupakan hadiah terindah bagi kami.</p><div class="info-card" id="giftCard"><strong id="bankName">Bank / Dompet Digital</strong><p class="body-copy" id="bankOwner">Nama pemilik rekening</p><p class="body-copy" id="bankNumber">0000000000</p><button class="action-link" type="button" id="copyAccountBtn">SALIN NOMOR</button></div></section>
-          <footer class="footer-note"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Matur Nuwun</h2><p id="closingText">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p><div class="couple-names" style="font-size:25px"><span id="footerGroom">Budi Santoso</span><span class="amp">&</span><span id="footerBride">Rahayu Ningrum</span></div><p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p><button class="open-btn" id="shareBtn" style="margin-top: 15px;">BAGIKAN UNDANGAN ↗</button></footer>
+          <footer class="footer-note"><div class="motif">꧁ ❖ ꧂</div><h2 class="section-title">Matur Nuwun</h2><p id="closingText">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p><div class="couple-names" style="font-size:25px"><span id="footerGroom">Budi Santoso</span><span class="amp">&</span><span id="footerBride">Rahayu Ningrum</span></div><p>Wassalamu’alaikum Warahmatullahi Wabarakatuh</p><button class="open-btn" id="shareBtn">BAGIKAN UNDANGAN ↗</button></footer>
         </div>
       </article>
     </div>
@@ -185,7 +285,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   <section class="editor" id="editorPanel">
     <div class="editor-head"><h2>Editor Undangan</h2><p>Ubah data di bawah ini. Pratinjau akan mengikuti perubahan secara langsung. Simpan online ke Google Sheets; browser tetap menjadi cadangan lokal.</p></div>
     <nav class="tabs" aria-label="Bagian editor">
-      <button class="tab active" data-tab="basic">Mempelai</button><button class="tab" data-tab="event">Acara</button><button class="tab" data-tab="story">Kisah & Galeri</button><button class="tab" data-tab="style">Desain</button><button class="tab" data-tab="extra">Koneksi & Lainnya</button>
+      <button class="tab active" data-tab="basic">Mempelai</button><button class="tab" data-tab="event">Acara</button><button class="tab" data-tab="story">Kisah & Galeri</button><button class="tab" data-tab="style">Desain</button><button class="tab" data-tab="extra">Musik & Lainnya</button>
     </nav>
     <div class="form-area">
       <div class="group active" data-group="basic">
@@ -194,6 +294,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <div class="field"><label for="inBride">Nama lengkap mempelai wanita</label><input id="inBride" data-bind="bride" value="Rahayu Ningrum"></div>
         <div class="field"><label for="inGroomParents">Keterangan orang tua mempelai pria</label><input id="inGroomParents" data-bind="groomParents" value="Putra dari Bapak Sutrisno & Ibu Sumarni"></div>
         <div class="field"><label for="inBrideParents">Keterangan orang tua mempelai wanita</label><input id="inBrideParents" data-bind="brideParents" value="Putri dari Bapak Slamet & Ibu Wagiyem"></div>
+        <div class="field"><label>Foto profil mempelai (terpisah dari galeri kenangan)</label><div class="profile-photo-field"><div id="groomPhotoThumbWrap"><div class="profile-photo-placeholder">Foto pria</div></div><div class="profile-photo-controls"><strong>Mempelai Pria</strong><input id="inGroomPhoto" type="file" accept="image/*"><button class="btn danger" id="clearGroomPhotoBtn" type="button">Hapus foto pria</button></div></div><div class="profile-photo-field"><div id="bridePhotoThumbWrap"><div class="profile-photo-placeholder">Foto wanita</div></div><div class="profile-photo-controls"><strong>Mempelai Wanita</strong><input id="inBridePhoto" type="file" accept="image/*"><button class="btn danger" id="clearBridePhotoBtn" type="button">Hapus foto wanita</button></div></div><div class="row2 profile-style-controls"><div class="field"><label for="profilePhotoShape">Bentuk foto kedua mempelai</label><select id="profilePhotoShape"><option value="circle">Bulat</option><option value="rounded">Persegi membulat</option><option value="oval">Oval</option></select></div><div class="field"><label for="profilePhotoSize">Ukuran foto: <span id="profilePhotoSizeLabel">112</span> px</label><input id="profilePhotoSize" type="range" min="76" max="180" step="4" value="112"></div><div class="field"><label for="profilePhotoFrame">Bingkai foto</label><select id="profilePhotoFrame"><option value="gold">Emas klasik</option><option value="double">Emas ganda</option><option value="minimal">Emas dekoratif</option><option value="none">Tanpa bingkai</option></select></div><div class="field"><label for="profilePhotoPositionY">Posisi foto atas/bawah: <span id="profilePhotoPositionYLabel">50</span>%</label><input id="profilePhotoPositionY" type="range" min="0" max="100" step="5" value="50"></div></div><p class="help">Foto profil tampil terpisah dari galeri kenangan. Atur bentuk, ukuran, bingkai, dan posisi potongan foto untuk kedua mempelai. Foto dikompres sebelum disimpan.</p></div>
         <div class="field"><label for="inOpening">Teks pembuka</label><textarea id="inOpening" data-bind="opening">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.</textarea></div>
         <div class="field"><label for="inClosing">Teks penutup</label><textarea id="inClosing" data-bind="closing">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</textarea></div>
       </div>
@@ -210,29 +311,95 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <div class="field"><label for="inStory">Kisah cinta (satu per baris: Tahun | Judul | Cerita)</label><textarea id="inStory" data-bind="story" style="min-height:150px">2022 | Awal Pertemuan | Sebuah pertemuan sederhana menjadi awal cerita kami.
 2025 | Hari Lamaran | Dengan restu keluarga, kami melangkah menuju hari bahagia.
 2026 | Hari Pernikahan | Memulai perjalanan baru dalam ikatan suci.</textarea></div>
-        <div class="field"><label for="inPhotos">Tambah foto galeri dari perangkat</label><input id="inPhotos" type="file" accept="image/*" multiple><p class="help">Gunakan foto yang ukurannya wajar agar penyimpanan tidak penuh.</p><div class="photo-preview" id="photoPreview"></div><button class="btn danger" id="clearPhotosBtn" type="button" style="margin-top:8px">Hapus foto galeri</button></div>
+        <div class="field"><label for="inPhotos">Tambah foto galeri dari perangkat</label><input id="inPhotos" type="file" accept="image/*" multiple><p class="help">Foto pada Tahap 1 disimpan di browser perangkat ini. Gunakan foto yang ukurannya wajar agar penyimpanan tidak penuh.</p><div class="photo-preview" id="photoPreview"></div><p class="help">Setiap foto memiliki tombol untuk dijadikan cover, mengubah urutan, atau menghapus foto tertentu.</p><button class="btn danger" id="clearPhotosBtn" type="button">Hapus semua foto galeri</button></div>
       </div>
       <div class="group" data-group="style">
         <h3>Gaya Visual</h3>
         <div class="field"><label for="inEyebrow">Label kecil cover</label><input id="inEyebrow" data-bind="eyebrow" value="Undangan Pernikahan"></div>
         <div class="field"><label for="inCoverTitle">Judul cover</label><input id="inCoverTitle" data-bind="coverTitle" value="Pawiwahan Adat Jawa"><p class="help">Judul cover mengikuti teks yang ditulis.</p></div>
+        <div class="field"><label>Palet warna siap pakai</label><div class="palette-grid" id="palettePresets">
+          <button class="palette-btn" type="button" data-palette="gold-black" aria-pressed="false"><span class="palette-swatches"><i style="background:#d4af62"></i><i style="background:#11100e"></i><i style="background:#fff7e8"></i></span><span>Gold – Hitam</span></button>
+          <button class="palette-btn" type="button" data-palette="sage-gold" aria-pressed="false"><span class="palette-swatches"><i style="background:#9caf88"></i><i style="background:#23372d"></i><i style="background:#f5f3e9"></i></span><span>Hijau Sage – Emas</span></button>
+          <button class="palette-btn" type="button" data-palette="champagne" aria-pressed="false"><span class="palette-swatches"><i style="background:#c7a878"></i><i style="background:#f5eee2"></i><i style="background:#fffaf2"></i></span><span>Putih – Champagne</span></button>
+          <button class="palette-btn" type="button" data-palette="dusty-pink" aria-pressed="false"><span class="palette-swatches"><i style="background:#c88f9a"></i><i style="background:#573640"></i><i style="background:#fff4f0"></i></span><span>Dusty Pink – Emas</span></button>
+        </div><p class="help">Pilih palet untuk mengubah warna aksen, kertas isi, dasar cover, dan teks cover sekaligus. Setelah itu, warna masih bisa disesuaikan manual.</p></div>
         <div class="row2"><div class="field"><label for="inGold">Warna aksen emas</label><input id="inGold" type="color" data-bind="gold" value="#d4af62"></div><div class="field"><label for="inPaper">Warna kertas isi</label><input id="inPaper" type="color" data-bind="paper" value="#fff7e8"></div></div>
         <div class="field"><label for="inBg">Warna dasar cover</label><input id="inBg" type="color" data-bind="coverBg" value="#11100e"></div>
+        <div class="row2"><div class="field"><label for="inCoverTextColor">Warna teks cover</label><input id="inCoverTextColor" type="color" data-bind="coverTextColor" value="#f2d58a"></div><div class="field"><label for="inCoverFont">Gaya huruf cover</label><select id="inCoverFont" data-bind="coverFont"><option value="Georgia,serif">Klasik elegan</option><option value="Arial,sans-serif">Modern sederhana</option><option value="'Trebuchet MS',sans-serif">Lembut modern</option><option value="'Courier New',monospace">Vintage</option></select></div></div>
+        <p class="help">Warna teks dan gaya huruf berlaku pada judul serta nama mempelai di cover.</p>
+        <div class="field"><label for="inHeadingFont">Font judul bagian undangan</label><select id="inHeadingFont" data-bind="headingFont"><option value="Georgia,serif">Klasik elegan</option><option value="'Palatino Linotype',Palatino,serif">Kaligrafi klasik</option><option value="'Trebuchet MS',sans-serif">Modern lembut</option><option value="Arial,sans-serif">Modern bersih</option><option value="'Courier New',monospace">Vintage mesin ketik</option></select></div>
+        <div class="field"><label for="inNameFont">Font nama mempelai</label><select id="inNameFont" data-bind="nameFont"><option value="Georgia,serif">Romantis klasik</option><option value="'Palatino Linotype',Palatino,serif">Anggun tradisional</option><option value="'Trebuchet MS',sans-serif">Modern elegan</option><option value="Arial,sans-serif">Sederhana tegas</option><option value="cursive">Dekoratif tulisan tangan*</option></select></div>
+        <div class="field"><label for="inBodyFont">Font isi undangan</label><select id="inBodyFont" data-bind="bodyFont"><option value="Arial,sans-serif">Mudah dibaca — Arial</option><option value="system-ui,sans-serif">Modern sistem</option><option value="'Trebuchet MS',sans-serif">Lembut modern</option><option value="Georgia,serif">Klasik serif</option><option value="'Courier New',monospace">Vintage</option></select><p class="help">*Font dekoratif mengikuti font yang tersedia di perangkat pengunjung. Pilihan font memakai font bawaan agar tetap ringan dan tidak bergantung pada unduhan font eksternal.</p></div>
+        <h3>Ukuran & Karakter Huruf</h3>
+        <div class="row2"><div class="field"><label for="inCoverTitleSize">Ukuran judul cover: <b id="coverTitleSizeLabel">36</b> px</label><input id="inCoverTitleSize" type="range" min="26" max="48" step="1" data-bind="coverTitleSize"></div><div class="field"><label for="inCoupleNameSize">Ukuran nama di cover: <b id="coupleNameSizeLabel">32</b> px</label><input id="inCoupleNameSize" type="range" min="24" max="44" step="1" data-bind="coupleNameSize"></div></div>
+        <div class="row2"><div class="field"><label for="inSectionTitleSize">Ukuran judul bagian: <b id="sectionTitleSizeLabel">25</b> px</label><input id="inSectionTitleSize" type="range" min="20" max="36" step="1" data-bind="sectionTitleSize"></div><div class="field"><label for="inPersonNameSize">Ukuran nama di bagian mempelai: <b id="personNameSizeLabel">24</b> px</label><input id="inPersonNameSize" type="range" min="18" max="34" step="1" data-bind="personNameSize"></div></div>
+        <div class="row2"><div class="field"><label for="inCoverTitleWeight">Ketebalan judul cover</label><select id="inCoverTitleWeight" data-bind="coverTitleWeight"><option value="400">Tipis</option><option value="500">Normal</option><option value="600">Semi tebal</option><option value="700">Tebal</option><option value="800">Sangat tebal</option></select></div><div class="field"><label for="inNameWeight">Ketebalan nama</label><select id="inNameWeight" data-bind="nameWeight"><option value="400">Tipis</option><option value="500">Normal</option><option value="600">Semi tebal</option><option value="700">Tebal</option><option value="800">Sangat tebal</option></select></div></div>
+        <div class="row2"><div class="field"><label for="inTitleSpacing">Jarak huruf judul: <b id="titleSpacingLabel">0</b> px</label><input id="inTitleSpacing" type="range" min="-1" max="5" step="0.5" data-bind="titleSpacing"></div><div class="field"><label for="inNameSpacing">Jarak huruf nama: <b id="nameSpacingLabel">0</b> px</label><input id="inNameSpacing" type="range" min="-1" max="5" step="0.5" data-bind="nameSpacing"></div></div>
+        <p class="help">Atur seperlunya agar judul dan nama tetap muat di layar HP. Pengaturan ini hanya mengubah tampilan, bukan isi teks.</p>
+        <div class="preset-panel" id="designPresetPanel"><h3>Preset Desain Saya</h3><p class="help">Simpan kombinasi warna, font, ukuran huruf, bingkai foto, dan dekorasi untuk dipakai lagi pada proyek lain di browser ini. Foto pribadi dan data pelanggan tidak ikut disimpan.</p><div class="preset-actions"><input id="designPresetName" maxlength="50" placeholder="Nama preset, misalnya Jawa Gold Elegan"><button class="btn" id="saveDesignPresetBtn" type="button">Simpan Preset</button></div><div class="preset-actions"><button class="btn" id="exportDesignPresetsBtn" type="button">Ekspor JSON</button><button class="btn" id="importDesignPresetsBtn" type="button">Impor JSON</button><input id="designPresetsFileInput" type="file" accept=".json,application/json" hidden></div><p class="help">Ekspor untuk mencadangkan preset. Impor akan menggabungkan preset ke daftar ini; nama yang sama akan diperbarui. File hanya berisi pengaturan desain, bukan foto atau data pelanggan.</p><div id="designPresetList" class="preset-list"><div class="preset-empty">Belum ada preset desain tersimpan.</div></div></div>
+        <div class="field"><label for="inCoverImage">URL gambar latar cover (opsional)</label><input id="inCoverImage" type="text" data-bind="coverImage" placeholder="https://.../latar.jpg"><p class="help">Tempel URL gambar langsung atau pilih foto dari galeri HP di bawah. Foto yang diunggah dikompres agar lebih ringan dan tersimpan di data proyek.</p><label for="inCoverUpload">Pilih gambar cover dari HP</label><input id="inCoverUpload" type="file" accept="image/*"><div class="photo-preview" id="coverImagePreview"></div><div class="row2"><div class="field"><label for="inCoverPositionX">Posisi horizontal foto</label><input id="inCoverPositionX" type="range" min="0" max="100" step="1" data-bind="coverPositionX"><p class="help">Kiri 0% · Tengah 50% · Kanan 100%</p></div><div class="field"><label for="inCoverPositionY">Posisi vertikal foto</label><input id="inCoverPositionY" type="range" min="0" max="100" step="1" data-bind="coverPositionY"><p class="help">Atas 0% · Tengah 50% · Bawah 100%</p></div></div><div class="field"><label for="inCoverFit">Cara menampilkan foto</label><select id="inCoverFit" data-bind="coverFit"><option value="cover">Isi cover — memenuhi area, sisi foto bisa terpotong</option><option value="contain">Tampilkan seluruh foto — bisa ada ruang kosong</option><option value="width">Lebar penuh — utamakan sisi lebar foto</option></select><p class="help">Geser posisi untuk menjaga wajah atau objek penting tetap terlihat. Pilihan ini mengatur tampilan foto, bukan mengubah file asli.</p></div><button class="btn" id="resetCoverCropBtn" type="button">Reset posisi foto</button><button class="btn danger" id="clearCoverImageBtn" type="button">Hapus gambar cover</button></div>
+        <div class="field"><label for="inMotifStyle">Motif dekorasi</label><select id="inMotifStyle" data-bind="motifStyle"><option value="jawa">Jawa klasik</option><option value="ukiran">Ukiran Jawa</option><option value="floral">Floral / bunga</option><option value="minimal">Minimalis</option><option value="geometric">Geometris</option><option value="stars">Bintang elegan</option></select><p class="help">Pilih karakter ornamen untuk bagian isi undangan. Ukiran Jawa memberi aksen tradisional, floral memberi nuansa bunga, dan minimalis menjaga tampilan tetap bersih.</p></div>
+        <div class="field"><label for="inAnimationStyle">Animasi bagian undangan</label><select id="inAnimationStyle" data-bind="animationStyle"><option value="none">Tanpa animasi (ringan)</option><option value="fade">Muncul lembut</option><option value="slide">Geser halus</option><option value="zoom">Zoom lembut</option></select><p class="help">Efek diterapkan pada bagian isi undangan. Untuk HP lama, pilih Tanpa animasi agar lebih ringan.</p></div>
         <label class="inline-check"><input type="checkbox" id="toggleMotif" checked> Tampilkan ornamen dekoratif</label>
-        <p class="help">Tema Jawa Wayangan Gold menggunakan motif gunungan, bingkai emas, batik dan ornamen klasik.</p>
+        <h3>Atur Bagian Undangan</h3>
+        <p class="help">Hilangkan centang pada bagian yang tidak ingin ditampilkan. Bagian cover tetap tampil.</p>
+        <div class="section-toggles">
+          <label><input type="checkbox" data-section-toggle="sec-opening" checked> Pembuka</label>
+          <label><input type="checkbox" data-section-toggle="sec-couple" checked> Mempelai</label>
+          <label><input type="checkbox" data-section-toggle="sec-countdown" checked> Hitung mundur</label>
+          <label><input type="checkbox" data-section-toggle="sec-events" checked> Rangkaian acara</label>
+          <label><input type="checkbox" data-section-toggle="sec-location" checked> Lokasi</label>
+          <label><input type="checkbox" data-section-toggle="sec-story" checked> Kisah</label>
+          <label><input type="checkbox" data-section-toggle="sec-gallery" checked> Galeri foto</label>
+          <label><input type="checkbox" data-section-toggle="sec-rsvp" checked> RSVP</label>
+          <label><input type="checkbox" data-section-toggle="sec-guestbook" checked> Ucapan & doa</label>
+          <label><input type="checkbox" data-section-toggle="sec-gift" checked> Hadiah</label>
+        </div>
+        <p class="help">Pilihan bagian tersimpan dalam data proyek dan akan ikut diterapkan saat proyek dibuka kembali.</p>
       </div>
       <div class="group" data-group="extra">
         <h3>Koneksi Online & Publikasi</h3>
-        <div class="field"><label for="adminKey">Kunci admin (untuk sesi editor)</label><input id="adminKey" type="password" autocomplete="current-password" placeholder="Masukkan ADMIN_KEY dari Properti Skrip"><p class="help">Kunci hanya disimpan selama tab/sesi ini terbuka. Wajib diisi untuk menyimpan proyek.</p></div>
+        <div class="field"><label for="apiUrl">URL Web App Google Apps Script (/exec)</label><input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec"><p class="help">URL backend disimpan di browser ini. Gunakan URL deployment /exec yang aktif.</p></div>
+        <div class="field"><label for="adminKey">Kunci admin (untuk sesi editor)</label><input id="adminKey" type="password" autocomplete="current-password" placeholder="Masukkan ADMIN_KEY dari Properti Skrip"><p class="help">Kunci hanya disimpan selama tab/sesi ini terbuka. Jangan membagikan kunci ini.</p></div>
         <div class="row2"><button class="btn" id="connectBtn" type="button">Tes Koneksi</button><button class="btn" id="listProjectsBtn" type="button">Muat Proyek Online</button></div>
         <div class="field"><label for="projectSelect">Proyek tersimpan</label><select id="projectSelect"><option value="">— Pilih proyek —</option></select></div>
         <div class="row2"><button class="btn" id="loadProjectBtn" type="button">Buka Proyek</button><button class="btn" id="publishBtn" type="button">Publikasikan</button></div>
+        <div class="row2"><button class="btn" id="checkPublicBtn" type="button">Buka & Cek Tautan Publik</button><button class="btn primary" id="sendCustomerBtn" type="button">Kirim Tautan via WhatsApp</button></div>
+        <p class="help">Setelah publikasi, cek tautan di tab baru untuk memastikan undangan bisa dimuat. Tombol WhatsApp membuka pesan yang masih bisa Anda periksa sebelum dikirim.</p>
+        <h3>Backup & Pemulihan Proyek</h3>
+        <p class="help">Simpan proyek aktif ke file JSON agar bisa dipindahkan atau dipulihkan nanti. Fitur ini membackup satu proyek yang sedang terbuka, bukan seluruh daftar proyek online.</p>
+        <div class="row2"><button class="btn" id="exportBackupBtn" type="button">Ekspor Backup JSON</button><button class="btn" id="importBackupBtn" type="button">Pulihkan dari JSON</button></div>
+        <input id="importBackupFile" type="file" accept=".json,application/json" hidden>
+        <p class="help">Ekspor sebelum mengedit besar. Saat memulihkan, data editor saat ini akan diganti; proyek online tidak berubah sampai Anda menekan Simpan Online.</p>
         <div class="field"><label for="projectTitle">Nama proyek undangan</label><input id="projectTitle" placeholder="Contoh: Pawiwahan Rahayu & Budi"></div>
         <p class="help" id="onlineStatus">Status online: belum dites.</p>
-        
-        <hr style="border:0; border-top:1px solid var(--line); margin: 20px 0;">
-        
-        <h3>Musik & Hadiah</h3>
+        <h3>Data Pelanggan & Pesanan</h3>
+        <div id="validationNotice" class="help" role="status" aria-live="polite">Pemeriksaan data akan muncul saat Anda menyimpan.</div>
+        <div class="field"><label for="customerName">Nama pelanggan / pemesan</label><input id="customerName" data-bind="customerName" placeholder="Nama pelanggan"></div>
+        <div class="field"><label for="customerContact">Kontak WhatsApp pelanggan</label><input id="customerContact" data-bind="customerContact" placeholder="08xxxxxxxxxx" inputmode="tel"></div>
+        <div class="row2"><div class="field"><label for="eventCategory">Jenis undangan</label><select id="eventCategory" data-bind="eventCategory"><option>Pernikahan</option><option>Khitan</option><option>Ulang Tahun</option><option>Aqiqah</option><option>Peresmian</option><option>Arisan / Kumpul</option><option>Acara RT</option><option>Lainnya</option></select></div><div class="field"><label for="orderStatus">Status pesanan</label><select id="orderStatus" data-bind="orderStatus"><option>Pesanan Baru</option><option>Dalam Pengerjaan</option><option>Menunggu Revisi</option><option>Siap Dikirim</option><option>Selesai</option></select></div></div>
+        <div class="field"><label for="orderDueDate">Target selesai pesanan</label><input id="orderDueDate" type="date" data-bind="orderDueDate"><p class="help">Tanggal target untuk membantu mengatur antrean pekerjaan. Tidak mengubah tanggal acara undangan.</p></div>
+        <h3>Pembayaran & Omzet Pesanan</h3>
+        <div class="row2"><div class="field"><label for="orderPrice">Harga jasa (Rp)</label><input id="orderPrice" type="number" min="0" step="1000" data-bind="orderPrice" inputmode="numeric" placeholder="Contoh: 150000"></div><div class="field"><label for="orderPaid">Total sudah dibayar (Rp)</label><input id="orderPaid" type="number" min="0" step="1000" data-bind="orderPaid" inputmode="numeric" placeholder="Total dari riwayat transaksi" readonly><p class="help">Dihitung otomatis dari seluruh transaksi pembayaran.</p></div></div>
+        <div class="field"><label for="orderPaymentDate">Tanggal pembayaran terakhir</label><input id="orderPaymentDate" type="date" data-bind="orderPaymentDate"><p class="help">Tanggal ini akan diperbarui otomatis saat Anda menambahkan riwayat pembayaran.</p></div>
+        <div class="field"><label>Riwayat pembayaran bertahap</label><p class="help">Catat setiap DP, cicilan, atau pelunasan sebagai transaksi terpisah. Total transaksi akan menjadi nilai "Sudah dibayar". Riwayat tersimpan di proyek dan backup JSON.</p>
+          <div class="row2"><div class="field"><label for="paymentTxnAmount">Jumlah pembayaran (Rp)</label><input id="paymentTxnAmount" type="number" min="1" step="1000" inputmode="numeric" placeholder="Contoh: 50000"></div><div class="field"><label for="paymentTxnDate">Tanggal transaksi</label><input id="paymentTxnDate" type="date"></div></div>
+          <div class="row2"><div class="field"><label for="paymentTxnMethod">Metode pembayaran</label><select id="paymentTxnMethod"><option>Transfer bank</option><option>QRIS</option><option>Tunai</option><option>E-wallet</option><option>Lainnya</option></select></div><div class="field"><label for="paymentTxnNote">Catatan transaksi</label><input id="paymentTxnNote" placeholder="Contoh: DP 50%"></div></div>
+          <button class="btn primary" id="addPaymentTxnBtn" type="button">+ Catat Pembayaran</button>
+          <div id="paymentHistoryList" class="studio-empty" style="margin-top:10px">Belum ada riwayat pembayaran.</div>
+        </div>
+        <div class="field"><label>Sisa pembayaran</label><div id="paymentBalanceEditor" class="order-check-summary">Rp0</div><p class="help">Sisa dihitung otomatis dari harga jasa dikurangi pembayaran. Angka ini dicatat per proyek, bukan transaksi bank.</p></div>
+        <div class="field"><label for="orderPaymentNote">Catatan pembayaran</label><textarea id="orderPaymentNote" data-bind="orderPaymentNote" rows="2" placeholder="Contoh: DP via transfer, pelunasan setelah undangan selesai"></textarea></div>
+        <div class="field"><label>Checklist pekerjaan pesanan</label><p class="help">Centang setiap tahap saat selesai. Checklist tersimpan bersama proyek dan ikut dalam backup JSON.</p><div id="orderChecklist" class="order-checklist">
+          <label class="order-check-item"><input type="checkbox" data-order-check="dataComplete"><span><strong>Data acara lengkap</strong><br><small>Nama, tanggal, waktu, dan lokasi sudah diperiksa.</small></span></label>
+          <label class="order-check-item"><input type="checkbox" data-order-check="photosReceived"><span><strong>Foto dan bahan diterima</strong><br><small>Foto mempelai, galeri, dan materi dari pelanggan sudah tersedia.</small></span></label>
+          <label class="order-check-item"><input type="checkbox" data-order-check="designApproved"><span><strong>Desain disetujui pelanggan</strong><br><small>Warna, tulisan, dan tampilan sudah mendapat persetujuan.</small></span></label>
+          <label class="order-check-item"><input type="checkbox" data-order-check="published"><span><strong>Undangan dipublikasikan</strong><br><small>Tautan publik sudah dibuat dan diperiksa.</small></span></label>
+          <label class="order-check-item"><input type="checkbox" data-order-check="linkSent"><span><strong>Tautan dikirim ke pelanggan</strong><br><small>Tautan undangan sudah dikirim melalui WhatsApp atau kanal lain.</small></span></label>
+        </div><div class="order-check-progress" aria-hidden="true"><span id="orderChecklistProgressBar"></span></div><div class="order-check-summary" id="orderChecklistSummary" aria-live="polite">0 dari 5 tahap selesai</div></div>
+        <div class="field"><label for="revisionNotes">Catatan revisi pelanggan</label><textarea id="revisionNotes" data-bind="revisionNotes" rows="4" placeholder="Contoh: ganti warna cover menjadi hijau, koreksi tanggal acara, ganti foto mempelai..."></textarea><p class="help">Catatan terbaru untuk revisi yang sedang dikerjakan.</p><button class="btn" id="addRevisionHistoryBtn" type="button">Tambahkan ke Riwayat Revisi</button></div><div class="field"><label>Riwayat revisi bertanggal</label><div id="revisionHistoryList" class="studio-empty">Belum ada riwayat revisi.</div><p class="help">Setiap entri menyimpan waktu, status pesanan, dan catatan. Riwayat ikut tersimpan di proyek dan backup JSON.</p></div>
+        <p class="help">Data pelanggan ini ikut tersimpan bersama proyek. Jangan masukkan informasi rahasia.</p>
+        <h3>Musik, Hadiah & Publikasi</h3>
         <div class="field"><label for="inMusic">URL musik gamelan (MP3/OGG)</label><input id="inMusic" type="url" data-bind="music" placeholder="https://.../gamelan.mp3"><p class="help">Gunakan URL audio langsung yang sah. Musik baru dimulai setelah interaksi pengguna.</p></div>
         <div class="field"><label for="inBank">Nama bank / dompet digital</label><input id="inBank" data-bind="bank" value="Bank / Dompet Digital"></div>
         <div class="field"><label for="inOwner">Nama pemilik rekening</label><input id="inOwner" data-bind="owner" value="Nama pemilik rekening"></div>
@@ -241,9 +408,10 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <label class="inline-check"><input type="checkbox" id="toggleAuto"> Aktifkan auto-scroll setelah undangan dibuka</label>
         <div class="field"><label for="inScrollSpeed">Kecepatan auto-scroll</label><select id="inScrollSpeed"><option value="0.5">Pelan</option><option value="1" selected>Normal</option><option value="1.7">Cepat</option></select></div>
         <div class="field"><label for="inShareText">Pesan WhatsApp</label><textarea id="inShareText">Assalamu’alaikum. Dengan penuh rasa syukur, kami mengundang Anda untuk menghadiri pernikahan kami. Mohon doa restunya.</textarea></div>
-        <div class="status">Status: simpan lokal tetap tersedia sebagai cadangan.</div>
+        <div class="status">Status: simpan lokal tetap tersedia sebagai cadangan. Koneksi online membutuhkan URL /exec dan ADMIN_KEY yang benar.</div>
         <audio id="bgMusic" preload="none" loop></audio>
-        <button class="btn" id="musicToggle" type="button" style="margin-bottom:8px">▶ Putar / Jeda Musik</button>
+        <button class="btn" id="musicToggle" type="button">▶ Putar / Jeda Musik</button>
+        <div class="field"><label for="musicVolume">Volume musik: <span id="musicVolumeLabel">70%</span></label><input id="musicVolume" type="range" min="0" max="1" step="0.05" value="0.7"><p class="help">Atur volume sebelum membagikan undangan. Pilihan volume tersimpan bersama proyek.</p></div>
         <button class="btn" id="autoToggle" type="button">⇵ Mulai / Hentikan Auto-scroll</button>
       </div>
     </div>
@@ -253,67 +421,31 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// --- INJEKSI PWA MANIFEST & SERVICE WORKER DALAM SATU FILE ---
-(function initPWA() {
-  const manifest = {
-    "name": "Jawa Wayangan Undangan Digital",
-    "short_name": "Undangan",
-    "description": "Aplikasi editor undangan digital dengan style tradisional Jawa.",
-    "start_url": "./",
-    "display": "standalone",
-    "background_color": "#11100e",
-    "theme_color": "#11100e",
-    "icons": [{
-      "src": "logoundanganwayang.png",
-      "sizes": "192x192 512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }]
-  };
-  const manifestData = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifest));
-  const link = document.createElement('link');
-  link.rel = 'manifest'; link.href = manifestData;
-  document.head.appendChild(link);
-
-  const swCode = `
-    self.addEventListener('install', e => self.skipWaiting());
-    self.addEventListener('activate', e => e.waitUntil(clients.claim()));
-    self.addEventListener('fetch', e => {}); 
-  `;
-  const blob = new Blob([swCode], { type: 'application/javascript' });
-  const swUrl = URL.createObjectURL(blob);
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(swUrl).catch(err => console.log('SW Reg Failed', err));
-  }
-})();
-
-// --- LOGIKA UTAMA UNDANGAN ---
 (function(){
 'use strict';
 const STORAGE_KEY='jawaWayanganGold_v1';
-const GAS_URL = 'https://script.google.com/macros/s/AKfycby9mJdi_mTOitwSVREiWmq0gDybIr22jotKAyFwppTyGpcAKpxpQe1IZJIVT46c9erb/exec';
-
 const $=id=>document.getElementById(id);
 const defaultState={
   groom:'Budi Santoso',bride:'Rahayu Ningrum',
   groomParents:'Putra dari Bapak Sutrisno & Ibu Sumarni',
-  brideParents:'Putri dari Bapak Slamet & Ibu Wagiyem',
+  brideParents:'Putri dari Bapak Slamet & Ibu Wagiyem',groomPhoto:'',bridePhoto:'',profilePhotoShape:'circle',profilePhotoSize:112,profilePhotoFrame:'gold',profilePhotoPositionY:50,
   opening:'Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami.',
   closing:'Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.',
   date:'2026-11-16T09:00',akadTime:'09.00 WIB',receptionTime:'11.00–14.00 WIB',
   venue:'Pendopo Sasana Mulyo',address:'Jl. Melati No. 8, Desa Sukamaju',maps:'',
   story:'2022 | Awal Pertemuan | Sebuah pertemuan sederhana menjadi awal cerita kami.\n2025 | Hari Lamaran | Dengan restu keluarga, kami melangkah menuju hari bahagia.\n2026 | Hari Pernikahan | Memulai perjalanan baru dalam ikatan suci.',
   eyebrow:'Undangan Pernikahan',coverTitle:'Pawiwahan Adat Jawa',
-  gold:'#d4af62',paper:'#fff7e8',coverBg:'#11100e',music:'',
+  gold:'#d4af62',paper:'#fff7e8',coverBg:'#11100e',coverTextColor:'#f2d58a',coverFont:'Georgia,serif',headingFont:'Georgia,serif',nameFont:'Georgia,serif',bodyFont:'Arial,sans-serif',coverTitleSize:36,coupleNameSize:32,sectionTitleSize:25,personNameSize:24,coverTitleWeight:500,nameWeight:500,titleSpacing:0,nameSpacing:0,coverImage:'',coverPositionX:50,coverPositionY:50,coverFit:'cover',music:'',musicVolume:0.7,
+  sections:{'sec-opening':true,'sec-couple':true,'sec-countdown':true,'sec-events':true,'sec-location':true,'sec-story':true,'sec-gallery':true,'sec-rsvp':true,'sec-guestbook':true,'sec-gift':true},
   bank:'Bank / Dompet Digital',owner:'Nama pemilik rekening',account:'0000000000',
   shareText:'Assalamu’alaikum. Dengan penuh rasa syukur, kami mengundang Anda untuk menghadiri pernikahan kami. Mohon doa restunya.',
-  showMotif:true,showGift:true,autoScroll:false,scrollSpeed:'1',photos:[],
-  id:'',title:''
+  showMotif:true,motifStyle:'jawa',animationStyle:'fade',showGift:true,autoScroll:false,scrollSpeed:'1',photos:[],
+  id:'',title:'',customerName:'',customerContact:'',eventCategory:'Pernikahan',orderStatus:'Pesanan Baru',orderDueDate:'',orderPrice:0,orderPaid:0,orderPaymentDate:'',orderPaymentNote:'',paymentHistory:[],orderChecklist:{dataComplete:false,photosReceived:false,designApproved:false,published:false,linkSent:false},revisionNotes:'',revisionHistory:[]
 };
 let state=structuredCloneSafe(defaultState);
 let autoTimer=null,installPrompt=null;
 function structuredCloneSafe(v){return JSON.parse(JSON.stringify(v))}
-function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',3000)}
+function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>el.style.display='none',2600)}
 function safeText(v){return String(v??'').trim()}
 function formatDate(value,withDay=true){
   if(!value)return 'Tanggal acara belum diatur';
@@ -321,11 +453,30 @@ function formatDate(value,withDay=true){
   return new Intl.DateTimeFormat('id-ID',{weekday:withDay?'long':undefined,day:'numeric',month:'long',year:'numeric'}).format(d);
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-
+function getFieldValue(key){
+ const el=document.querySelector('[data-bind="'+key+'"]');
+ return el?el.value:state[key];
+}
+const ORDER_CHECK_KEYS=['dataComplete','photosReceived','designApproved','published','linkSent'];
+function renderOrderChecklist(){
+ const checks=state.orderChecklist&&typeof state.orderChecklist==='object'?state.orderChecklist:{};
+ document.querySelectorAll('[data-order-check]').forEach(el=>{el.checked=checks[el.dataset.orderCheck]===true});
+ const done=ORDER_CHECK_KEYS.filter(k=>checks[k]===true).length;
+ const bar=$('orderChecklistProgressBar');if(bar)bar.style.width=(done/ORDER_CHECK_KEYS.length*100)+'%';
+ const summary=$('orderChecklistSummary');if(summary)summary.textContent=done+' dari '+ORDER_CHECK_KEYS.length+' tahap selesai'+(done===ORDER_CHECK_KEYS.length?' · Semua tahap sudah dicentang':'');
+}
+function readOrderChecklist(){
+ state.orderChecklist=state.orderChecklist&&typeof state.orderChecklist==='object'?state.orderChecklist:{};
+ ORDER_CHECK_KEYS.forEach(k=>{state.orderChecklist[k]=false});
+ document.querySelectorAll('[data-order-check]').forEach(el=>{state.orderChecklist[el.dataset.orderCheck]=el.checked});
+}
 function readInputs(){
  document.querySelectorAll('[data-bind]').forEach(el=>{state[el.dataset.bind]=el.value});
+ readOrderChecklist();
  state.showMotif=$('toggleMotif').checked;
  state.showGift=$('toggleGift').checked;
+ state.sections=state.sections||structuredCloneSafe(defaultState.sections);
+ document.querySelectorAll('[data-section-toggle]').forEach(el=>{state.sections[el.dataset.sectionToggle]=el.checked});
  state.autoScroll=$('toggleAuto').checked;
  state.scrollSpeed=$('inScrollSpeed').value;
  state.shareText=$('inShareText').value;
@@ -334,15 +485,21 @@ function setInput(key,value){
  const el=document.querySelector('[data-bind="'+key+'"]');if(el)el.value=value??'';
 }
 function loadInputs(){
+ state.coverPositionX=Number(state.coverPositionX??50);state.coverPositionY=Number(state.coverPositionY??50);state.coverFit=state.coverFit||'cover';
+ state.profilePhotoShape=['circle','rounded','oval'].includes(state.profilePhotoShape)?state.profilePhotoShape:'circle';state.profilePhotoSize=Math.min(180,Math.max(76,Number(state.profilePhotoSize)||112));
+ $('profilePhotoShape').value=state.profilePhotoShape;$('profilePhotoSize').value=String(state.profilePhotoSize);$('profilePhotoSizeLabel').textContent=String(state.profilePhotoSize);
  Object.keys(state).forEach(k=>setInput(k,state[k]));
  $('toggleMotif').checked=!!state.showMotif;
  $('toggleGift').checked=!!state.showGift;
+ state.sections={...structuredCloneSafe(defaultState.sections),...(state.sections||{})};
+ document.querySelectorAll('[data-section-toggle]').forEach(el=>{el.checked=state.sections[el.dataset.sectionToggle]!==false});
  $('toggleAuto').checked=!!state.autoScroll;
  $('inScrollSpeed').value=state.scrollSpeed||'1';
  $('inShareText').value=state.shareText||defaultState.shareText;
- renderPhotoPreviews();
+ $('musicVolume').value=String(state.musicVolume??0.7); $('musicVolumeLabel').textContent=Math.round(Number($('musicVolume').value)*100)+'%';
+ state.orderChecklist={...structuredCloneSafe(defaultState.orderChecklist),...(state.orderChecklist||{})};state.paymentHistory=Array.isArray(state.paymentHistory)?state.paymentHistory:[];renderOrderChecklist();renderPaymentHistory();
+ renderPhotoPreviews();renderPaymentHistory();updatePaymentBalance();
 }
-
 function updatePreview(){
  readInputs();
  $('coverGroom').textContent=state.groom||'Nama Mempelai Pria';
@@ -353,6 +510,7 @@ function updatePreview(){
  $('footerBride').textContent=state.bride||'Nama Mempelai Wanita';
  $('groomParents').textContent=state.groomParents;
  $('brideParents').textContent=state.brideParents;
+ renderProfilePhoto('groom');renderProfilePhoto('bride');
  $('openingText').textContent=state.opening;
  $('closingText').textContent=state.closing;
  $('coverEyebrow').textContent=state.eyebrow||'Undangan Pernikahan';
@@ -372,11 +530,44 @@ function updatePreview(){
  document.documentElement.style.setProperty('--gold2',state.gold||defaultState.gold);
  document.documentElement.style.setProperty('--paper',state.paper||defaultState.paper);
  document.documentElement.style.setProperty('--coverBg',state.coverBg||defaultState.coverBg);
- $('cover').style.background='radial-gradient(ellipse at center,#30251a 0%,'+(state.coverBg||'#11100e')+' 68%,#090807 100%)';
+ document.documentElement.style.setProperty('--coverTextColor',state.coverTextColor||defaultState.coverTextColor);
+ document.documentElement.style.setProperty('--coverFont',state.coverFont||defaultState.coverFont);
+ $('invite').style.setProperty('--headingFont',state.headingFont||defaultState.headingFont);
+ $('invite').style.setProperty('--nameFont',state.nameFont||defaultState.nameFont);
+ $('invite').style.setProperty('--bodyFont',state.bodyFont||defaultState.bodyFont);
+ const typographicVars={coverTitleSize:[26,48,36],coupleNameSize:[24,44,32],sectionTitleSize:[20,36,25],personNameSize:[18,34,24],coverTitleWeight:[400,800,500],nameWeight:[400,800,500],titleSpacing:[-1,5,0],nameSpacing:[-1,5,0]};
+ Object.entries(typographicVars).forEach(([key,bounds])=>{const n=Number(state[key]);const value=Number.isFinite(n)?Math.min(bounds[1],Math.max(bounds[0],n)):bounds[2];state[key]=value;$('invite').style.setProperty('--'+key,value+(key.toLowerCase().includes('weight')?'':'px'));const label=$(key+'Label');if(label)label.textContent=String(value)+(key.toLowerCase().includes('spacing')?'':'')});
+ const invite=$('invite');
+ invite.classList.remove('anim-fade','anim-slide','anim-zoom');
+ if(['fade','slide','zoom'].includes(state.animationStyle))invite.classList.add('anim-'+state.animationStyle);
+ const coverImage=safeText(state.coverImage||'');
+ const validCoverImage=/^https?:\/\//i.test(coverImage)||/^data:image\/(png|jpeg|webp);base64,/i.test(coverImage);
+ $('cover').style.background=validCoverImage
+   ? 'linear-gradient(180deg,rgba(10,8,5,.38),rgba(10,8,5,.72)),url("'+coverImage.replace(/[\"\\]/g,'')+'") '+(Number(state.coverPositionX??50)+'% '+Number(state.coverPositionY??50)+'%')+'/'+(state.coverFit==='contain'?'contain':state.coverFit==='width'?'100% auto':'cover')+' no-repeat'
+   : 'radial-gradient(ellipse at center,#30251a 0%,'+(state.coverBg||'#11100e')+' 68%,#090807 100%)';
  document.querySelectorAll('.corner').forEach(el=>el.style.display=state.showMotif?'block':'none');
- renderStory();renderGallery();updateCountdown();
+ const themeNames=['jawa','ukiran','floral','minimal','geometric','stars'];
+ invite.classList.remove(...themeNames.map(name=>'theme-'+name));
+ invite.classList.add('theme-'+(themeNames.includes(state.motifStyle)?state.motifStyle:'jawa'));
+ const motifSets={jawa:null,ukiran:'꧁ ༺ ❖ ༻ ꧂',floral:'❀ ❦ ❀',minimal:'— ✦ —',geometric:'◇ ◆ ◇',stars:'✧ ✦ ✧'};
+ document.querySelectorAll('.motif').forEach(el=>{
+   if(!el.dataset.originalMotif)el.dataset.originalMotif=el.textContent;
+   el.textContent=motifSets[state.motifStyle]||el.dataset.originalMotif;
+   el.style.opacity=state.motifStyle==='minimal'?'0.78':'1';
+   el.style.letterSpacing=state.motifStyle==='geometric'?'.28em':'.18em';
+ });
+ document.querySelectorAll('[data-section-toggle]').forEach(el=>{const section=$(el.dataset.sectionToggle);if(section)section.style.display=el.checked?'':'none'});
+ renderStory();renderGallery();renderCoverImagePreview();updateCountdown();
 }
-
+function renderProfilePhoto(person){
+ const key=person==='groom'?'groomPhoto':'bridePhoto';
+ const preview=$(person==='groom'?'groomProfilePreview':'brideProfilePreview');
+ const wrap=$(person==='groom'?'groomPhotoThumbWrap':'bridePhotoThumbWrap');
+ const src=typeof state[key]==='string'?state[key]:'';
+ const shape=['circle','rounded','oval'].includes(state.profilePhotoShape)?state.profilePhotoShape:'circle';const size=Math.min(180,Math.max(76,Number(state.profilePhotoSize)||112));
+ const frame=['gold','double','minimal','none'].includes(state.profilePhotoFrame)?state.profilePhotoFrame:'gold';const pos=Math.min(100,Math.max(0,Number(state.profilePhotoPositionY??50)));if(preview){preview.src=src;preview.hidden=!src;preview.classList.remove('shape-rounded','shape-oval','frame-double','frame-minimal','frame-none');if(shape!=='circle')preview.classList.add('shape-'+shape);if(frame!=='gold')preview.classList.add('frame-'+frame);preview.style.width=size+'px';preview.style.height=size+'px';preview.style.borderRadius=shape==='circle'?'50%':shape==='rounded'?'18px':'50% / 38%';preview.style.objectPosition='center '+pos+'%';}
+ if(wrap){wrap.innerHTML='';if(src){const img=document.createElement('img');img.className='profile-photo-thumb';if(shape!=='circle')img.classList.add('shape-'+shape);if(frame!=='gold')img.classList.add('frame-'+frame);img.style.objectPosition='center '+pos+'%';img.src=src;img.alt=person==='groom'?'Foto mempelai pria':'Foto mempelai wanita';img.style.width='76px';img.style.height='76px';img.style.borderRadius=shape==='circle'?'50%':shape==='rounded'?'14px':'50% / 38%';wrap.appendChild(img);}else{const placeholder=document.createElement('div');placeholder.className='profile-photo-placeholder';if(frame!=='gold')placeholder.classList.add('frame-'+frame);placeholder.style.borderRadius=shape==='circle'?'50%':shape==='rounded'?'14px':'50% / 38%';placeholder.textContent=person==='groom'?'Foto pria':'Foto wanita';wrap.appendChild(placeholder);}}
+}
 function renderStory(){
  const target=$('storyTimeline');
  const rows=(state.story||'').split('\n').map(s=>s.trim()).filter(Boolean);
@@ -387,12 +578,11 @@ function renderStory(){
    return '<div class="timeline-item"><div class="smallcaps">'+escapeHtml(year)+'</div><h4>'+escapeHtml(title)+'</h4><p class="body-copy">'+escapeHtml(desc)+'</p></div>';
  }).join('');
 }
-
 function renderGallery(){
  const grid=$('galleryGrid');
  const photos=Array.isArray(state.photos)?state.photos:[];
  grid.innerHTML='';
- if(!photos.length){grid.innerHTML='<div class="empty-photo">Foto pasangan dapat ditambahkan melalui editor</div>';return}
+ if(!photos.length){grid.innerHTML='<div class="empty-photo" style="grid-column:1/-1">Foto pasangan dapat ditambahkan melalui editor</div>';return}
  photos.forEach((src,i)=>{
    if(typeof src!=='string')return;
    const img=document.createElement('img');img.src=src;img.alt='Foto kenangan '+(i+1);img.loading='lazy';
@@ -400,12 +590,28 @@ function renderGallery(){
    grid.appendChild(img);
  });
 }
-
 function renderPhotoPreviews(){
- const wrap=$('photoPreview');wrap.innerHTML='';
- (state.photos||[]).forEach(src=>{const img=document.createElement('img');img.src=src;img.alt='Pratinjau foto';wrap.appendChild(img)});
+ const wrap=$('photoPreview');if(!wrap)return;wrap.innerHTML='';
+ const photos=Array.isArray(state.photos)?state.photos:[];
+ if(!photos.length){wrap.innerHTML='<p class="help">Belum ada foto galeri.</p>';return;}
+ photos.forEach((src,index)=>{
+   const item=document.createElement('div');item.className='photo-item';
+   const img=document.createElement('img');img.src=src;img.alt='Foto galeri '+(index+1);img.loading='lazy';
+   const content=document.createElement('div');content.className='photo-item-meta';content.textContent='Foto '+(index+1)+' dari '+photos.length;
+   const actions=document.createElement('div');actions.className='photo-item-actions';
+   const makeButton=(label,action,disabled=false,extra='')=>{const b=document.createElement('button');b.type='button';b.className='btn '+extra;b.textContent=label;b.disabled=disabled;b.addEventListener('click',action);return b;};
+   actions.appendChild(makeButton('Jadikan Cover',()=>{state.coverImage=src;setInput('coverImage',src);renderCoverImagePreview();updatePreview();saveLocal(false);toast('Foto '+(index+1)+' dijadikan cover.');}));
+   actions.appendChild(makeButton('← Geser',()=>{if(index<=0)return;[state.photos[index-1],state.photos[index]]=[state.photos[index],state.photos[index-1]];renderPhotoPreviews();updatePreview();saveLocal(false);toast('Urutan foto diperbarui.');},index===0));
+   actions.appendChild(makeButton('Geser →',()=>{if(index>=state.photos.length-1)return;[state.photos[index+1],state.photos[index]]=[state.photos[index],state.photos[index+1]];renderPhotoPreviews();updatePreview();saveLocal(false);toast('Urutan foto diperbarui.');},index===photos.length-1));
+   actions.appendChild(makeButton('Hapus Foto',()=>{state.photos.splice(index,1);renderPhotoPreviews();updatePreview();saveLocal(false);toast('Foto galeri dihapus.');},false,'danger'));
+   item.appendChild(img);const right=document.createElement('div');right.style.flex='1';right.style.minWidth='0';right.appendChild(content);right.appendChild(actions);item.appendChild(right);wrap.appendChild(item);
+ });
 }
-
+function renderCoverImagePreview(){
+ const wrap=$('coverImagePreview');if(!wrap)return;wrap.innerHTML='';
+ const src=safeText(state.coverImage||'');if(!src)return;
+ const img=document.createElement('img');img.src=src;img.alt='Pratinjau gambar cover';img.style.width='100px';img.style.height='125px';img.style.objectFit='cover';wrap.appendChild(img);
+}
 function updateCountdown(){
  const target=state.date?new Date(state.date).getTime():NaN;
  if(!Number.isFinite(target)){['cdDays','cdHours','cdMinutes','cdSeconds'].forEach(id=>$(id).textContent='--');return}
@@ -414,7 +620,18 @@ function updateCountdown(){
  $('cdDays').textContent=String(d);$('cdHours').textContent=String(h).padStart(2,'0');$('cdMinutes').textContent=String(m).padStart(2,'0');$('cdSeconds').textContent=String(s).padStart(2,'0');
  $('countdownNote').textContent=target<Date.now()?'Acara telah dimulai atau tanggalnya telah berlalu.':'Kami menantikan doa restu Anda.';
 }
-
+function renderRevisionHistory(){
+ const host=$('revisionHistoryList');if(!host)return;
+ const items=Array.isArray(state.revisionHistory)?state.revisionHistory:[];
+ if(!items.length){host.className='studio-empty';host.textContent='Belum ada riwayat revisi.';return}
+ host.className='';host.innerHTML=items.slice().reverse().map(item=>'<div style="border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;background:rgba(255,255,255,.03)"><div style="font-size:.82rem;color:var(--gold2);margin-bottom:5px">'+escapeHtml(item.dateLabel||item.date||'Waktu tidak tersedia')+' · '+escapeHtml(item.status||'Status tidak dicatat')+'</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">'+escapeHtml(item.note||'')+'</div></div>').join('');
+}
+function addRevisionHistory(){
+ readInputs();const note=safeText(state.revisionNotes);if(!note){toast('Isi catatan revisi terlebih dahulu.');$('revisionNotes').focus();return}
+ const now=new Date();state.revisionHistory=Array.isArray(state.revisionHistory)?state.revisionHistory:[];
+ state.revisionHistory.push({date:now.toISOString(),dateLabel:now.toLocaleString('id-ID'),status:safeText(state.orderStatus)||'Status tidak dicatat',note});
+ state.revisionHistory=state.revisionHistory.slice(-50);renderRevisionHistory();saveLocal(false);toast('Catatan ditambahkan ke riwayat revisi. Tekan Simpan Online agar tersimpan di Google Sheets.');
+}
 function saveLocal(show=true){
  try{readInputs();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));if(show)toast('Data tersimpan di browser ini.');return true}
  catch(e){toast('Penyimpanan gagal. Kurangi ukuran foto galeri.');return false}
@@ -422,24 +639,23 @@ function saveLocal(show=true){
 function loadLocal(){
  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);state={...structuredCloneSafe(defaultState),...parsed};}}
  catch(e){state=structuredCloneSafe(defaultState)}
- loadInputs();updatePreview();
+ loadInputs();renderRevisionHistory();updatePreview();
 }
-
-// --- FUNGSI API BACKEND (TERKUNCI KE GAS_URL) ---
+const API_URL_KEY='jawaWayanganGold_apiUrl';
 let adminKeySession='';
 let publicMode=false;
-
+function getApiUrl(){const queryApi=new URLSearchParams(location.search).get('api');return (queryApi||$('apiUrl').value||localStorage.getItem(API_URL_KEY)||'').trim()}
 function setOnlineStatus(message,isError=false){
  const el=$('onlineStatus');if(el){el.textContent='Status online: '+message;el.style.color=isError?'#e59a8d':'#a8d5a2'}
 }
-
 function apiUrl(action, params={}){
- const u=new URL(GAS_URL);
+ const base=getApiUrl();
+ if(!base) throw new Error('Masukkan URL Web App /exec pada tab Musik & Lainnya.');
+ const u=new URL(base);
  u.searchParams.set('action',action);
  Object.keys(params).forEach(k=>u.searchParams.set(k,params[k]));
  return u.toString();
 }
-
 async function apiGet(action, params={}){
  const response=await fetch(apiUrl(action,params),{method:'GET',redirect:'follow',cache:'no-store'});
  if(!response.ok) throw new Error('Server menjawab HTTP '+response.status);
@@ -447,39 +663,98 @@ async function apiGet(action, params={}){
  if(data && data.ok===false) throw new Error(data.error||'Permintaan gagal.');
  return data;
 }
-
 async function apiPost(body){
- const response=await fetch(GAS_URL,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
+ const url=getApiUrl();
+ if(!url) throw new Error('Masukkan URL Web App /exec pada tab Musik & Lainnya.');
+ // text/plain avoids the browser's application/json CORS preflight for Apps Script Web Apps.
+ const response=await fetch(url,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
  if(!response.ok) throw new Error('Server menjawab HTTP '+response.status);
  const data=await response.json();
  if(data && data.ok===false) throw new Error(data.error||'Permintaan gagal.');
  return data;
 }
-
 function collectProject(){
  readInputs();
  return {...state,id:state.id||'',title:($('projectTitle').value||state.title||('Undangan '+(state.groom||'Jawa')+' & '+(state.bride||''))).trim()};
 }
-
+function validateProjectBeforeSave(project){
+ const missing=[];
+ if(!safeText(project.title)) missing.push('Nama proyek undangan');
+ if(!safeText(project.customerName)) missing.push('Nama pelanggan / pemesan');
+ const warnings=[];
+ if(!safeText(project.customerContact)) warnings.push('nomor WhatsApp pelanggan belum diisi');
+ if(!safeText(project.date)) warnings.push('tanggal dan waktu acara belum diisi');
+ if(!safeText(project.venue)) warnings.push('tempat acara belum diisi');
+ const notice=$('validationNotice');
+ if(missing.length){
+   notice.textContent='Belum bisa disimpan. Lengkapi: '+missing.join(' dan ')+'.';
+   notice.style.color='var(--danger)';
+   const target=missing[0].includes('Nama proyek')?$('projectTitle'):$('customerName');
+   target.scrollIntoView({behavior:'smooth',block:'center'});target.focus();
+   toast('Lengkapi data wajib sebelum menyimpan.');
+   return false;
+ }
+ if(warnings.length){
+   notice.textContent='Data wajib lengkap. Saran sebelum dikirim ke pelanggan: '+warnings.join('; ')+'.';
+   notice.style.color='var(--gold2)';
+ }else{
+   notice.textContent='Pemeriksaan data berhasil: nama proyek dan pelanggan, tanggal, tempat, serta kontak sudah terisi.';
+   notice.style.color='var(--ok)';
+ }
+ return true;
+}
 function applyProject(project){
  state={...structuredCloneSafe(defaultState),...(project||{})};
  $('projectTitle').value=state.title||'';
- loadInputs();updatePreview();saveLocal(false);
+ loadInputs();renderRevisionHistory();updatePreview();saveLocal(false);
 }
-
+function exportProjectBackup(){
+ try{
+  const project=collectProject();
+  const backup={format:'JawaWayanganGoldProjectBackup',version:'4.9.0',exportedAt:new Date().toISOString(),project};
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  const base=(project.title||'proyek-undangan').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)||'proyek-undangan';
+  a.href=url;a.download=base+'-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast('Backup proyek aktif berhasil disiapkan.');
+ }catch(e){toast('Ekspor gagal: '+(e.message||'periksa ukuran data proyek.'))}
+}
+async function importProjectBackup(ev){
+ const file=(ev.target.files||[])[0];if(!file)return;
+ try{
+  if(file.size>5*1024*1024)throw new Error('File lebih dari 5 MB. Gunakan file backup yang lebih kecil.');
+  const parsed=JSON.parse(await file.text());
+  const project=parsed&&parsed.format==='JawaWayanganGoldProjectBackup'?parsed.project:parsed;
+  if(!project||typeof project!=='object'||Array.isArray(project))throw new Error('Format file JSON tidak valid.');
+  const allowed=['groom','bride','date','venue','title','customerName','sections','photos'];
+  if(!allowed.some(k=>Object.prototype.hasOwnProperty.call(project,k)))throw new Error('File tidak tampak seperti data proyek Jawa Wayangan Gold.');
+  if(project.photos!==undefined&&!Array.isArray(project.photos))throw new Error('Data foto pada file tidak valid.');
+  if(project.sections!==undefined&&(!project.sections||typeof project.sections!=='object'||Array.isArray(project.sections)))throw new Error('Pengaturan bagian undangan tidak valid.');
+  if(!window.confirm('Pulihkan backup ini? Data editor yang sedang terbuka akan diganti. Proyek online tidak berubah sampai disimpan online.'))return;
+  applyProject(project);saveLocal(false);toast('Backup dipulihkan ke editor. Tekan Simpan Online jika ingin memperbarui proyek online.');
+ }catch(e){toast('Pemulihan gagal: '+(e.message||'file tidak valid.'))}
+ finally{ev.target.value=''}
+}
 async function testConnection(){
  try{
+   if(!$('apiUrl').value.trim()) throw new Error('Masukkan URL /exec terlebih dahulu.');
+   localStorage.setItem(API_URL_KEY,$('apiUrl').value.trim());
    const result=await apiGet('health');
    setOnlineStatus((result.status||'online')+' · '+(result.app||'Backend')+' versi '+(result.version||'?'));
    toast('Koneksi backend berhasil.');
  }catch(e){setOnlineStatus(e.message,true);toast('Koneksi gagal: '+e.message)}
 }
-
 async function saveOnline(){
  try{
+   const url=$('apiUrl').value.trim();
+   if(!url) throw new Error('Masukkan URL Web App /exec di tab Musik & Lainnya.');
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
-   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY dari Properti Skrip Google Apps Script.');
+   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY dari Properti Skrip.');
+   localStorage.setItem(API_URL_KEY,url);
    const project=collectProject();
+   if(!validateProjectBeforeSave(project)) return;
+   const payloadSize=JSON.stringify(project).length;
+   if(payloadSize>38000) throw new Error('Data proyek terlalu besar ('+payloadSize+' karakter). Kurangi foto berukuran besar atau gunakan URL foto publik.');
    const result=await apiPost({action:'save',key:adminKeySession,project});
    state.id=result.id;state.title=project.title;
    saveLocal(false);
@@ -493,42 +768,209 @@ async function saveOnline(){
    toast('Simpan online gagal. Cadangan lokal disimpan.');
  }
 }
-
 async function refreshProjects(selectId=''){
  try{
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
-   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY terlebih dahulu.');
+   if(!adminKeySession) throw new Error('Masukkan ADMIN_KEY terlebih dahulu pada tab Musik & Lainnya.');
    const result=await apiPost({action:'list',key:adminKeySession});
+   const projects=result.projects||[];
    const select=$('projectSelect');
    select.innerHTML='<option value="">— Pilih proyek —</option>';
-   (result.projects||[]).forEach(item=>{
-     const opt=document.createElement('option');opt.value=item.id;
-     opt.textContent=item.title+(item.published?' · Publik':' · Draft');
-     select.appendChild(opt);
-   });
+   projects.forEach(item=>{const opt=document.createElement('option');opt.value=item.id;opt.textContent=item.title+(item.published?' · Publik':' · Draft');select.appendChild(opt)});
    if(selectId) select.value=selectId;
-   setOnlineStatus((result.projects||[]).length+' proyek ditemukan di Sheets.');
- }catch(e){setOnlineStatus(e.message,true);toast('Gagal memuat proyek: '+e.message)}
+   renderStudioProjects(projects);
+   const msg=projects.length+' proyek ditemukan di Sheets.';
+   $('dashboardStatus').textContent=msg;
+   setOnlineStatus(msg);
+ }catch(e){$('dashboardStatus').textContent='Gagal memuat: '+e.message;setOnlineStatus(e.message,true);toast('Gagal memuat proyek: '+e.message)}
 }
-
+let studioProjectsCache=[];
+function formatRupiah(value){const n=Number(value)||0;return 'Rp'+Math.max(0,n).toLocaleString('id-ID');}
+function paymentValues(item){const price=Math.max(0,Number(item.orderPrice)||0),paid=Math.max(0,Number(item.orderPaid)||0);return {price,paid,balance:Math.max(0,price-paid)}}
+function updatePaymentBalance(){const price=Math.max(0,Number($('orderPrice')?.value)||0),paid=Math.max(0,Number($('orderPaid')?.value)||0);const el=$('paymentBalanceEditor');if(el)el.textContent=formatRupiah(Math.max(0,price-paid));}
+function renderPaymentHistory(){
+ const host=$('paymentHistoryList');if(!host)return;
+ const items=Array.isArray(state.paymentHistory)?state.paymentHistory:[];
+ if(!items.length){host.className='studio-empty';host.textContent='Belum ada riwayat pembayaran.';return;}
+ host.className='';
+ host.innerHTML=items.slice().reverse().map((item,reverseIndex)=>{const index=items.length-1-reverseIndex;return '<div style="border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;background:rgba(255,255,255,.03)"><div style="display:flex;gap:8px;justify-content:space-between;align-items:start;flex-wrap:wrap"><strong>'+formatRupiah(item.amount)+'</strong><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" type="button" data-print-payment="'+index+'">Cetak Kuitansi</button><button class="btn" type="button" data-delete-payment="'+index+'" aria-label="Hapus transaksi pembayaran">Hapus</button></div></div><div style="font-size:.82rem;color:var(--gold2);margin:5px 0">'+escapeHtml(item.date||'Tanggal tidak diisi')+' · '+escapeHtml(item.method||'Metode tidak diisi')+'</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">'+escapeHtml(item.note||'Tanpa catatan')+'</div></div>'}).join('');
+}
+function syncPaymentHistoryTotal(){
+ const items=Array.isArray(state.paymentHistory)?state.paymentHistory:[];
+ state.orderPaid=items.reduce((sum,item)=>sum+Math.max(0,Number(item.amount)||0),0);
+ const dates=items.map(x=>String(x.date||'')).filter(Boolean).sort();
+ state.orderPaymentDate=dates.length?dates[dates.length-1]:'';
+ setInput('orderPaid',state.orderPaid);setInput('orderPaymentDate',state.orderPaymentDate);updatePaymentBalance();
+}
+function addPaymentTransaction(){
+ const amount=Math.floor(Number($('paymentTxnAmount').value)||0);const date=$('paymentTxnDate').value||new Date().toISOString().slice(0,10);const method=$('paymentTxnMethod').value||'Lainnya';const note=$('paymentTxnNote').value.trim();
+ if(amount<=0){toast('Masukkan jumlah pembayaran lebih dari Rp0.');$('paymentTxnAmount').focus();return;}
+ state.paymentHistory=Array.isArray(state.paymentHistory)?state.paymentHistory:[];
+ if(!state.paymentHistory.length&&Number(state.orderPaid)>0){state.paymentHistory.push({id:'legacy-'+Date.now(),amount:Math.max(0,Number(state.orderPaid)||0),date:state.orderPaymentDate||date,method:'Catatan sebelumnya',note:'Saldo pembayaran sebelum riwayat transaksi diaktifkan'});}
+ state.paymentHistory.push({id:'pay-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),amount,date,method,note});
+ state.paymentHistory=state.paymentHistory.slice(-200);syncPaymentHistoryTotal();renderPaymentHistory();$('paymentTxnAmount').value='';$('paymentTxnNote').value='';saveLocal(false);toast('Pembayaran dicatat. Tekan Simpan Online untuk menyimpan ke Google Sheets.');
+}
+function deletePaymentTransaction(index){
+ const items=Array.isArray(state.paymentHistory)?state.paymentHistory:[];if(index<0||index>=items.length)return;
+ items.splice(index,1);state.paymentHistory=items;syncPaymentHistoryTotal();renderPaymentHistory();saveLocal(false);toast('Transaksi dihapus. Tekan Simpan Online untuk menyimpan perubahan.');
+}
+function printPaymentReceipt(index){
+ const items=Array.isArray(state.paymentHistory)?state.paymentHistory:[];const item=items[index];if(!item){toast('Transaksi pembayaran tidak ditemukan.');return;}
+ const values=paymentValues({...state,orderPaid:items.reduce((sum,x)=>sum+Math.max(0,Number(x.amount)||0),0)});
+ const dateText=escapeHtml(item.date||'Tanggal tidak diisi');
+ const projectName=escapeHtml(state.title||$('projectTitle')?.value||'Proyek undangan');
+ const customer=escapeHtml(state.customerName||'Pelanggan');
+ const method=escapeHtml(item.method||'Tidak diisi');const note=escapeHtml(item.note||'-');
+ const rawId=String(state.id||'BARU').replace(/[^a-zA-Z0-9]/g,'').slice(-6)||'BARU';
+ const receiptNo='KW-'+String(item.date||new Date().toISOString().slice(0,10)).replace(/-/g,'')+'-'+rawId+'-'+String(index+1).padStart(3,'0');
+ const amount=formatRupiah(item.amount),totalPaid=formatRupiah(values.paid),price=formatRupiah(values.price),balance=formatRupiah(values.balance);
+ const w=window.open('','_blank','width=720,height=800');
+ if(!w){toast('Jendela kuitansi diblokir browser. Izinkan pop-up lalu coba lagi.');return;}
+ w.document.open();w.document.write('<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kuitansi '+escapeHtml(receiptNo)+'</title><style>*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#222;margin:0;padding:24px}.receipt{max-width:680px;margin:auto;border:1px solid #c9a34d;padding:24px}.brand{text-align:center;border-bottom:2px solid #b28a35;padding-bottom:14px}.brand h1{font-size:22px;margin:0 0 5px;color:#71531c}.brand p{margin:0;color:#666;font-size:12px}.heading{display:flex;justify-content:space-between;gap:12px;margin:20px 0}.heading h2{margin:0;font-size:20px}.muted{color:#666;font-size:12px}.row{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid #eee}.row span:first-child{color:#555}.amount{font-size:22px;font-weight:bold;color:#5f4719}.summary{margin-top:16px;padding:12px;background:#faf6ea}.note{margin-top:14px;white-space:pre-wrap}.sign{display:flex;justify-content:flex-end;margin-top:45px;text-align:center}.sign div{min-width:170px}.signline{margin-top:55px;border-top:1px solid #999;padding-top:7px}.actions{text-align:center;margin:16px}.actions button{padding:10px 18px;background:#72551e;color:#fff;border:0;border-radius:6px}@media print{body{padding:0}.receipt{border:1px solid #999}.actions{display:none}}@media(max-width:480px){body{padding:8px}.receipt{padding:14px}.heading{flex-direction:column}}</style></head><body><main class="receipt"><header class="brand"><h1>Jawa Wayangan Gold Studio</h1><p>KUITANSI PEMBAYARAN JASA UNDANGAN DIGITAL</p></header><div class="heading"><div><h2>KUITANSI</h2><div class="muted">Nomor: '+escapeHtml(receiptNo)+'</div></div><div><b>Tanggal</b><br>'+dateText+'</div></div><div class="row"><span>Telah diterima dari</span><strong>'+customer+'</strong></div><div class="row"><span>Proyek / pesanan</span><strong>'+projectName+'</strong></div><div class="row"><span>Metode pembayaran</span><strong>'+method+'</strong></div><div class="row"><span>Jumlah diterima</span><strong class="amount">'+amount+'</strong></div><div class="summary"><div class="row"><span>Total harga jasa</span><strong>'+price+'</strong></div><div class="row"><span>Total pembayaran tercatat</span><strong>'+totalPaid+'</strong></div><div class="row"><span>Sisa pembayaran</span><strong>'+balance+'</strong></div></div><div class="note"><b>Catatan:</b> '+note+'</div><p class="muted">Kuitansi ini merupakan bukti pencatatan pembayaran pada aplikasi. Pastikan data dan penerimaan dana telah diverifikasi.</p><div class="sign"><div>Hormat kami,<div class="signline">Jawa Wayangan Gold Studio</div></div></div></main><div class="actions"><button onclick="window.print()">Cetak / Simpan PDF</button></div><script>window.onload=function(){setTimeout(function(){window.focus()},250)};<\/script></body></html>');w.document.close();
+}
+function financeFilteredProjects(){
+ const from=$('financeDateFrom')?.value||'',to=$('financeDateTo')?.value||'';
+ return studioProjectsCache.filter(item=>{
+  const date=String(item.orderPaymentDate||'').slice(0,10);
+  if(from||to){if(!date)return false;if(from&&date<from)return false;if(to&&date>to)return false;}
+  return true;
+ });
+}
+function renderFinanceReport(){
+ const host=$('financeReportSummary');if(!host)return;
+ const list=financeFilteredProjects();
+ const totals=list.reduce((a,item)=>{const v=paymentValues(item);a.price+=v.price;a.paid+=v.paid;a.balance+=v.balance;return a;},{price:0,paid:0,balance:0});
+ host.innerHTML='<span class="summary-chip"><b>'+list.length+'</b>Proyek dalam laporan</span><span class="summary-chip"><b>'+formatRupiah(totals.price)+'</b>Nilai jasa</span><span class="summary-chip"><b>'+formatRupiah(totals.paid)+'</b>Pembayaran tercatat</span><span class="summary-chip"><b>'+formatRupiah(totals.balance)+'</b>Sisa pembayaran</span>';
+}
+function exportFinanceCsv(){
+ const list=financeFilteredProjects();
+ if(!list.length){toast('Tidak ada proyek pada rentang tanggal tersebut.');return;}
+ const cell=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ const rows=[['Tanggal pembayaran terakhir','Nama proyek','Nama pelanggan','Kontak','Jenis acara','Status','Harga jasa (Rp)','Dibayar (Rp)','Sisa (Rp)','Catatan pembayaran']];
+ list.forEach(item=>{const v=paymentValues(item);rows.push([item.orderPaymentDate||'',item.title||'',item.customerName||'',item.customerContact||'',item.eventCategory||'',item.orderStatus||'',v.price,v.paid,v.balance,item.orderPaymentNote||'']);});
+ const csv='\ufeff'+rows.map(row=>row.map(cell).join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');
+ a.href=url;a.download='laporan-keuangan-undangan-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Laporan CSV berhasil disiapkan.');
+}
+function renderStudioProjects(projects){
+ studioProjectsCache=Array.isArray(projects)?projects.slice():[];
+ renderFinanceReport();
+ const host=$('studioProjectCards');
+ const summary=$('dashboardSummary');
+ const count=studioProjectsCache.length;
+ const statusOf=item=>item.orderStatus||(item.published?'Sudah Dipublikasikan':'Draft');
+ const counts={new:0,work:0,revision:0,ready:0,done:0,published:0,draft:0};
+ studioProjectsCache.forEach(item=>{const st=statusOf(item);if(st==='Pesanan Baru')counts.new++;if(st==='Dalam Pengerjaan')counts.work++;if(st==='Menunggu Revisi')counts.revision++;if(st==='Siap Dikirim')counts.ready++;if(st==='Selesai')counts.done++;if(item.published)counts.published++;else counts.draft++});
+ summary.innerHTML='<span class="summary-chip"><b>'+count+'</b>Total proyek</span><span class="summary-chip"><b>'+counts.new+'</b>Pesanan baru</span><span class="summary-chip"><b>'+counts.work+'</b>Dikerjakan</span><span class="summary-chip"><b>'+counts.revision+'</b>Revisi</span><span class="summary-chip"><b>'+counts.ready+'</b>Siap dikirim</span><span class="summary-chip"><b>'+counts.done+'</b>Selesai</span><span class="summary-chip"><b>'+counts.published+'</b>Publik</span><span class="summary-chip"><b>'+counts.draft+'</b>Draft</span>';
+ const totals=studioProjectsCache.reduce((acc,item)=>{const v=paymentValues(item);acc.price+=v.price;acc.paid+=v.paid;acc.balance+=v.balance;return acc},{price:0,paid:0,balance:0});
+ summary.insertAdjacentHTML('beforeend','<span class="summary-chip"><b>'+formatRupiah(totals.price)+'</b>Total nilai pesanan</span><span class="summary-chip"><b>'+formatRupiah(totals.paid)+'</b>Sudah dibayar</span><span class="summary-chip"><b>'+formatRupiah(totals.balance)+'</b>Sisa pembayaran</span>');
+ const search=($('projectSearch')?.value||'').trim().toLocaleLowerCase('id-ID');
+ const filter=$('projectStatusFilter')?.value||'';
+ const dueFilter=$('projectDueFilter')?.value||'';
+ const sortFilter=$('projectSortFilter')?.value||'updated';
+ const now=new Date();
+ const todayKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+ const nextDate=new Date(now.getFullYear(),now.getMonth(),now.getDate()+7);
+ const next7Key=nextDate.getFullYear()+'-'+String(nextDate.getMonth()+1).padStart(2,'0')+'-'+String(nextDate.getDate()).padStart(2,'0');
+ const visible=studioProjectsCache.filter(item=>{
+   const hay=[item.title,item.customerName,item.customerContact,item.eventCategory,item.orderStatus,item.slug].join(' ').toLocaleLowerCase('id-ID');
+   if(search&&!hay.includes(search))return false;
+   if(filter==='__published'&&!item.published)return false;
+   if(filter==='__draft'&&item.published)return false;
+   if(filter&&filter!=='__published'&&filter!=='__draft'&&statusOf(item)!==filter)return false;
+   const due=item.orderDueDate||'';
+   const overdue=!!due&&due<todayKey&&statusOf(item)!=='Selesai';
+   if(dueFilter==='overdue'&&!overdue)return false;
+   if(dueFilter==='today'&&due!==todayKey)return false;
+   if(dueFilter==='next7'&&(!due||due<todayKey||due>next7Key||statusOf(item)==='Selesai'))return false;
+   if(dueFilter==='none'&&due)return false;
+   return true;
+ });
+ visible.sort((a,b)=>{
+   if(sortFilter==='title')return String(a.title||'').localeCompare(String(b.title||''),'id');
+   if(sortFilter==='due'){
+     const ad=a.orderDueDate||'9999-12-31',bd=b.orderDueDate||'9999-12-31';
+     return ad.localeCompare(bd)||String(b.updatedAt||'').localeCompare(String(a.updatedAt||''));
+   }
+   return String(b.updatedAt||'').localeCompare(String(a.updatedAt||''));
+ });
+ if(!count){host.innerHTML='<div class="studio-empty">Belum ada proyek online. Tekan “Proyek Baru”, isi data, lalu pilih Simpan Online.</div>';return}
+ if(!visible.length){host.innerHTML='<div class="studio-empty">Tidak ada proyek yang cocok. Ubah kata pencarian, status, atau filter target selesai.</div>';return}
+ host.innerHTML=visible.map(item=>{
+   const status=item.orderStatus|| (item.published?'Sudah Dipublikasikan':'Draft');
+   const customer=item.customerName||'Pelanggan belum diisi';
+   const category=item.eventCategory||'Jenis belum dipilih';
+   const updated=item.updatedAt?new Date(item.updatedAt).toLocaleDateString('id-ID'):'—';
+   const due=item.orderDueDate?new Date(item.orderDueDate+'T12:00:00').toLocaleDateString('id-ID'):'Belum ditentukan';
+   const overdue=item.orderDueDate&&item.orderDueDate<new Date().toISOString().slice(0,10)&&status!=='Selesai';
+   const payment=paymentValues(item);
+   return '<article class="studio-card"><h3>'+escapeHtml(item.title||'Undangan tanpa judul')+'</h3><p>👤 '+escapeHtml(customer)+'</p><p>✦ '+escapeHtml(category)+' · '+escapeHtml(status)+'</p><p>Target selesai: <strong style="color:'+(overdue?'#d85b50':'inherit')+'">'+escapeHtml(due)+(overdue?' · TERLEWAT':'')+'</strong></p><p>Harga jasa: <strong>'+formatRupiah(payment.price)+'</strong></p><p>Dibayar: '+formatRupiah(payment.paid)+' · Sisa: <strong>'+formatRupiah(payment.balance)+'</strong></p><p>Update: '+escapeHtml(updated)+'</p><div class="studio-tools"><button class="btn" type="button" data-open-project="'+escapeHtml(item.id)+'">Buka & Edit</button><button class="btn" type="button" data-duplicate-project="'+escapeHtml(item.id)+'">Duplikat</button></div></article>';
+ }).join('');
+ host.querySelectorAll('[data-open-project]').forEach(btn=>btn.addEventListener('click',async()=>{const select=$('projectSelect');select.value=btn.dataset.openProject;await loadOnlineProject();$('editorPanel').scrollIntoView({behavior:'smooth',block:'start'})}));
+ host.querySelectorAll('[data-duplicate-project]').forEach(btn=>btn.addEventListener('click',()=>duplicateOnlineProject(btn.dataset.duplicateProject)));
+}
+async function duplicateOnlineProject(id){
+ try{
+   if(!id)throw new Error('Proyek sumber tidak ditemukan.');
+   if(!adminKeySession)adminKeySession=$('adminKey').value.trim();
+   if(!adminKeySession)throw new Error('Masukkan PIN/admin key terlebih dahulu pada pengaturan backend.');
+   const loaded=await apiPost({action:'load',key:adminKeySession,id});
+   if(!loaded||!loaded.project||typeof loaded.project!=='object')throw new Error('Data proyek sumber tidak lengkap.');
+   applyProject(loaded.project);
+   const sourceTitle=String(state.title||'Undangan Digital').trim();
+   state.id='';state.title='Salinan - '+sourceTitle;state.customerName='';state.customerContact='';state.orderStatus='Pesanan Baru';state.orderDueDate='';state.orderPrice=0;state.orderPaid=0;state.orderPaymentDate='';state.orderPaymentNote='';state.paymentHistory=[];state.orderChecklist=structuredCloneSafe(defaultState.orderChecklist);state.revisionNotes='';state.revisionHistory=[];
+   state.published=false;state.slug='';state.publicUrl='';
+   $('projectTitle').value=state.title;
+   loadInputs();renderRevisionHistory();updatePreview();saveLocal(false);
+   setActiveTab('extra');$('editorPanel').scrollIntoView({behavior:'smooth',block:'start'});
+   toast('Salinan dibuat sebagai proyek baru. Isi nama pelanggan dan periksa data acara sebelum Simpan Online.');
+ }catch(e){setOnlineStatus('duplikasi gagal: '+e.message,true);toast('Duplikasi gagal: '+e.message)}
+}
+const studioTemplates={
+ jawa:{category:'Pernikahan',eyebrow:'Undangan Pernikahan',title:'Pawiwahan Adat Jawa',gold:'#d4af62',paper:'#fff7e8',coverBg:'#11100e'},
+ modern:{category:'Pernikahan',eyebrow:'The Wedding Invitation',title:'Wedding Celebration',gold:'#b89b72',paper:'#fffaf1',coverBg:'#3b302c'},
+ khitan:{category:'Khitan',eyebrow:'Undangan Khitan',title:'Walimatul Khitan',gold:'#70b49a',paper:'#f3fff7',coverBg:'#123c32'},
+ birthday:{category:'Ulang Tahun',eyebrow:'Undangan Ulang Tahun',title:'Birthday Celebration',gold:'#c8a0e8',paper:'#fff5ff',coverBg:'#342047'},
+ aqiqah:{category:'Aqiqah',eyebrow:'Undangan Aqiqah',title:'Tasyakuran Aqiqah',gold:'#93b78a',paper:'#f8fff2',coverBg:'#263d2a'},
+ formal:{category:'Peresmian',eyebrow:'Undangan Acara Resmi',title:'Peresmian & Syukuran',gold:'#8cb9d8',paper:'#f4faff',coverBg:'#142b43'}
+};
+function applyStudioTemplate(key){
+ const template=studioTemplates[key];if(!template)return;
+ readInputs();
+ state.eventCategory=template.category;state.eyebrow=template.eyebrow;state.coverTitle=template.title;
+ state.gold=template.gold;state.paper=template.paper;state.coverBg=template.coverBg;
+ state.coverTextColor=defaultState.coverTextColor;state.coverFont=defaultState.coverFont;
+ // Preserve names, dates, customer details, photos, and project ID when switching design.
+ loadInputs();updatePreview();saveLocal(false);
+ $('templateGallery').scrollIntoView({behavior:'smooth',block:'start'});
+ toast('Template '+template.title+' diterapkan. Data proyek lain tetap dipertahankan.');
+}
+function startNewProject(){
+ state=structuredCloneSafe(defaultState);state.id='';state.title='';state.customerName='';state.customerContact='';state.orderStatus='Pesanan Baru';state.orderDueDate='';state.orderPrice=0;state.orderPaid=0;state.orderPaymentDate='';state.orderPaymentNote='';state.paymentHistory=[];state.orderChecklist=structuredCloneSafe(defaultState.orderChecklist);
+ $('projectTitle').value='';loadInputs();updatePreview();saveLocal(false);setActiveTab('extra');$('editorPanel').scrollIntoView({behavior:'smooth',block:'start'});toast('Proyek baru siap diisi. Lengkapi data pelanggan, lalu Simpan Online.');
+}
 async function loadOnlineProject(){
  try{
    const id=$('projectSelect').value;
    if(!id) throw new Error('Pilih proyek dari daftar terlebih dahulu.');
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
+   const url=getApiUrl();
+   const response=await apiPost({action:'list',key:adminKeySession});
+   const item=(response.projects||[]).find(p=>p.id===id);
+   if(!item) throw new Error('Proyek tidak ditemukan pada daftar.');
+   // Backend intentionally returns project metadata only in list. Retrieve unpublished projects through an authenticated load endpoint.
    const loaded=await apiPost({action:'load',key:adminKeySession,id});
    applyProject(loaded.project);
-   setOnlineStatus('proyek berhasil dimuat.');
+   setOnlineStatus('proyek berhasil dimuat: '+item.title);
    toast('Proyek online berhasil dibuka.');
  }catch(e){setOnlineStatus(e.message,true);toast('Buka proyek gagal: '+e.message)}
 }
-
 async function publishOnline(){
  try{
    if(!adminKeySession) adminKeySession=$('adminKey').value.trim();
    if(!state.id) {await saveOnline();if(!state.id) return;}
-   await apiPost({action:'publish',key:adminKeySession,id:state.id});
-   const publicUrl=new URL(location.href);publicUrl.search='';publicUrl.hash='';publicUrl.searchParams.set('undangan',state.id);
+   const result=await apiPost({action:'publish',key:adminKeySession,id:state.id});
+   const publicUrl=new URL(location.href);publicUrl.search='';publicUrl.hash='';publicUrl.searchParams.set('undangan',state.id);publicUrl.searchParams.set('api',getApiUrl());
    await navigator.clipboard?.writeText(publicUrl.toString()).catch(()=>{});
    setOnlineStatus('undangan dipublikasikan · tautan: '+publicUrl.toString());
    toast('Undangan dipublikasikan. Tautan publik siap dibagikan.');
@@ -536,9 +978,54 @@ async function publishOnline(){
    await refreshProjects(state.id);
  }catch(e){setOnlineStatus(e.message,true);toast('Publikasi gagal: '+e.message)}
 }
-
 function promptFallbackLink(url){
  const el=$('onlineStatus');if(el){el.textContent='Salin tautan publik ini: '+url;el.style.userSelect='text'}
+}
+
+function buildPublicUrl(){
+ const publicUrl=new URL(location.href);
+ publicUrl.search='';publicUrl.hash='';
+ publicUrl.searchParams.set('undangan',state.id);
+ publicUrl.searchParams.set('api',getApiUrl());
+ return publicUrl.toString();
+}
+async function checkPublicLink(){
+ let tab=null;
+ try{
+   if(!state.id) throw new Error('Simpan proyek dan publikasikan undangan terlebih dahulu.');
+   const link=buildPublicUrl();
+   // Open a blank tab synchronously to reduce the chance of a popup blocker stopping the check.
+   tab=window.open('about:blank','_blank');
+   setOnlineStatus('memeriksa tautan publik…');
+   const result=await apiGet('public',{id:state.id});
+   if(!result || !result.data) throw new Error('Backend merespons, tetapi data undangan publik tidak ditemukan.');
+   if(tab){tab.location.href=link;}
+   else {setOnlineStatus('tautan publik valid: '+link);promptFallbackLink(link);}
+   toast('Pemeriksaan berhasil. Undangan publik dibuka untuk diperiksa.');
+ }catch(e){
+   if(tab && !tab.closed) tab.close();
+   setOnlineStatus('pemeriksaan tautan gagal: '+e.message,true);
+   toast('Tautan publik belum dapat diverifikasi: '+e.message);
+ }
+}
+function sendCustomerLink(){
+ try{
+   if(!state.id) throw new Error('Simpan proyek dan publikasikan undangan terlebih dahulu.');
+   const contact=String(state.customerContact||$('customerContact').value||'').replace(/\\D/g,'');
+   if(!contact) throw new Error('Isi nomor WhatsApp pelanggan pada Data Pelanggan & Pesanan.');
+   const phone=contact.startsWith('0')?'62'+contact.slice(1):contact;
+   if(phone.length<10) throw new Error('Nomor WhatsApp tampaknya belum lengkap.');
+   const link=buildPublicUrl();
+   const name=state.customerName||'Bapak/Ibu';
+   const title=state.title||$('projectTitle').value||'Undangan Digital';
+   const message='Yth. '+name+', berikut tautan undangan digital '+title+':\
+'+link+'\
+\
+Terima kasih.';
+   const wa='https://wa.me/'+phone+'?text='+encodeURIComponent(message);
+   window.open(wa,'_blank','noopener,noreferrer');
+   toast('WhatsApp dibuka. Periksa pesan lalu tekan Kirim.');
+ }catch(e){toast(e.message);setOnlineStatus(e.message,true)}
 }
 
 async function loadPublicInvitation(){
@@ -560,7 +1047,6 @@ async function loadPublicInvitation(){
    return true;
  }catch(e){toast('Undangan online gagal dimuat: '+e.message);return false}
 }
-
 async function loadPublicEntries(action,id){
  try{
    const result=await apiGet(action,{id});
@@ -569,27 +1055,76 @@ async function loadPublicEntries(action,id){
      const entries=result.entries||[];
      el.innerHTML=entries.length?entries.map(g=>'<div class="guest-entry"><strong>'+escapeHtml(g.name)+'</strong><br>'+escapeHtml(g.message)+'</div>').join(''):'<p class="body-copy">Jadilah yang pertama menyampaikan doa.</p>';
    }
- }catch(e){}
+ }catch(e){/* guestbook list is optional; public invitation should still render */}
 }
-
 function setActiveTab(tab){
  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
  document.querySelectorAll('.group').forEach(g=>g.classList.toggle('active',g.dataset.group===tab));
 }
 document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>setActiveTab(btn.dataset.tab)));
-document.querySelectorAll('[data-bind]').forEach(el=>el.addEventListener('input',updatePreview));
+document.querySelectorAll('[data-template]').forEach(btn=>btn.addEventListener('click',()=>applyStudioTemplate(btn.dataset.template)));
+function filterStudioTemplates(){
+ const q=safeText($('templateSearch').value).toLocaleLowerCase('id-ID');
+ const category=$('templateCategoryFilter').value;
+ let shown=0;
+ document.querySelectorAll('[data-template-card]').forEach(card=>{
+   const text=(card.dataset.search+' '+card.textContent).toLocaleLowerCase('id-ID');
+   const matchesText=!q||text.includes(q);
+   const matchesCategory=!category||card.dataset.category===category;
+   const visible=matchesText&&matchesCategory;
+   card.hidden=!visible;
+   if(visible)shown++;
+ });
+ $('templateFilterStatus').textContent=shown?'Menampilkan '+shown+' dari 6 template.':'Tidak ada template yang cocok. Coba kata kunci atau kategori lain.';
+}
+$('templateSearch').addEventListener('input',filterStudioTemplates);
+$('templateCategoryFilter').addEventListener('change',filterStudioTemplates);
+document.querySelectorAll('[data-section-toggle]').forEach(el=>el.addEventListener('change',()=>{readInputs();updatePreview();saveLocal(false)}));
+$('inCoverImage').addEventListener('input',()=>{readInputs();updatePreview();saveLocal(false)});
+document.querySelectorAll('[data-bind]').forEach(el=>{el.addEventListener('input',updatePreview);el.addEventListener('change',()=>{updatePreview();saveLocal(false)});});
+document.querySelectorAll('[data-order-check]').forEach(el=>el.addEventListener('change',()=>{readOrderChecklist();renderOrderChecklist();saveLocal(false)}));
 ['toggleMotif','toggleGift','toggleAuto','inScrollSpeed','inShareText'].forEach(id=>$(id).addEventListener('change',updatePreview));
-
 $('saveBtn').addEventListener('click',saveOnline);
 $('saveBottomBtn').addEventListener('click',saveOnline);
 $('connectBtn').addEventListener('click',testConnection);
 $('listProjectsBtn').addEventListener('click',()=>refreshProjects());
+$('dashboardRefreshBtn').addEventListener('click',()=>refreshProjects());
+$('orderPrice').addEventListener('input',updatePaymentBalance);$('orderPaid').addEventListener('input',updatePaymentBalance);$('addPaymentTxnBtn').addEventListener('click',addPaymentTransaction);$('paymentHistoryList').addEventListener('click',ev=>{const printBtn=ev.target.closest('[data-print-payment]');if(printBtn){printPaymentReceipt(Number(printBtn.dataset.printPayment));return;}const btn=ev.target.closest('[data-delete-payment]');if(btn)deletePaymentTransaction(Number(btn.dataset.deletePayment));});$('paymentTxnDate').value=new Date().toISOString().slice(0,10);
+$('financeDateFrom').addEventListener('change',renderFinanceReport);$('financeDateTo').addEventListener('change',renderFinanceReport);$('clearFinanceDatesBtn').addEventListener('click',()=>{$('financeDateFrom').value='';$('financeDateTo').value='';renderFinanceReport()});$('exportFinanceCsvBtn').addEventListener('click',exportFinanceCsv);
+$('projectSearch').addEventListener('input',()=>renderStudioProjects(studioProjectsCache));
+$('projectStatusFilter').addEventListener('change',()=>renderStudioProjects(studioProjectsCache));
+$('projectDueFilter').addEventListener('change',()=>renderStudioProjects(studioProjectsCache));
+$('projectSortFilter').addEventListener('change',()=>renderStudioProjects(studioProjectsCache));
+$('newProjectBtn').addEventListener('click',startNewProject);
 $('loadProjectBtn').addEventListener('click',loadOnlineProject);
 $('publishBtn').addEventListener('click',publishOnline);
+$('sendCustomerBtn').addEventListener('click',sendCustomerLink);
+$('checkPublicBtn').addEventListener('click',checkPublicLink);
+$('exportBackupBtn').addEventListener('click',exportProjectBackup);
+$('importBackupBtn').addEventListener('click',()=>$('importBackupFile').click());
+$('importBackupFile').addEventListener('change',importProjectBackup);
+$('apiUrl').value=localStorage.getItem(API_URL_KEY)||new URLSearchParams(location.search).get('api')||'';
 $('adminKey').addEventListener('input',()=>{adminKeySession=$('adminKey').value.trim()});
 $('previewBtn').addEventListener('click',()=>{ $('previewArea').scrollIntoView({behavior:'smooth',block:'start'});toast('Pratinjau undangan');});
+function enterCustomerPreview(){
+ readInputs();updatePreview();
+ document.body.classList.add('customer-preview');
+ $('inviteContent').classList.add('open');
+ $('previewArea').scrollIntoView({behavior:'smooth',block:'start'});
+ window.scrollTo({top:0,behavior:'smooth'});
+ toast('Mode pratinjau pelanggan aktif di perangkat ini.');
+}
+function exitCustomerPreview(){
+ document.body.classList.remove('customer-preview');
+ $('editorPanel').style.display='';
+ $('studioDashboard').style.display='';$('templateGallery').style.display='';
+ toast('Kembali ke Studio Undangan.');
+}
+$('customerPreviewBtn').addEventListener('click',enterCustomerPreview);
+$('exitCustomerPreview').addEventListener('click',exitCustomerPreview);
+$('addRevisionHistoryBtn').addEventListener('click',addRevisionHistory);
 $('resetBtn').addEventListener('click',()=>{
- state=structuredCloneSafe(defaultState);loadInputs();updatePreview();saveLocal(false);toast('Data contoh dipulihkan.');
+ state=structuredCloneSafe(defaultState);loadInputs();renderRevisionHistory();updatePreview();saveLocal(false);toast('Data contoh dipulihkan.');
 });
 $('openInviteBtn').addEventListener('click',()=>{
  $('inviteContent').classList.add('open');
@@ -597,7 +1132,25 @@ $('openInviteBtn').addEventListener('click',()=>{
  if(state.music)playMusic();
  if(state.autoScroll)startAutoScroll();
 });
-
+async function compressCoverImage(file){
+ const dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file)});
+ const img=await new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src=dataUrl});
+ const maxW=420,maxH=560,scale=Math.min(1,maxW/img.width,maxH/img.height);const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));
+ const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);
+ let result='';for(const quality of [.62,.5,.4,.32]){result=canvas.toDataURL('image/jpeg',quality);if(result.length<22000)break;}
+ if(result.length>30000)throw new Error('Gambar masih terlalu besar setelah dikompres. Pilih gambar yang lebih sederhana.');
+ return result;
+}
+$('inCoverUpload').addEventListener('change',async ev=>{
+ const file=ev.target.files&&ev.target.files[0];if(!file)return;
+ if(!file.type.startsWith('image/')){toast('Pilih file gambar yang valid.');ev.target.value='';return;}
+ if(file.size>8*1024*1024){toast('Ukuran foto maksimal 8 MB sebelum dikompres.');ev.target.value='';return;}
+ try{state.coverImage=await compressCoverImage(file);setInput('coverImage',state.coverImage);renderCoverImagePreview();updatePreview();saveLocal(false);toast('Gambar cover dipasang dan dikompres.');}
+ catch(err){toast(err.message||'Gambar gagal diproses.');}
+ ev.target.value='';
+});
+$('clearCoverImageBtn').addEventListener('click',()=>{state.coverImage='';setInput('coverImage','');renderCoverImagePreview();updatePreview();saveLocal(false);toast('Gambar cover dihapus.');});
+$('resetCoverCropBtn').addEventListener('click',()=>{state.coverPositionX=50;state.coverPositionY=50;state.coverFit='cover';setInput('coverPositionX',50);setInput('coverPositionY',50);setInput('coverFit','cover');updatePreview();saveLocal(false);toast('Posisi foto cover direset.');});
 $('inPhotos').addEventListener('change',async ev=>{
  const files=Array.from(ev.target.files||[]).filter(f=>f.type.startsWith('image/'));
  if(!files.length)return;
@@ -613,52 +1166,55 @@ $('inPhotos').addEventListener('change',async ev=>{
  ev.target.value='';
 });
 $('clearPhotosBtn').addEventListener('click',()=>{state.photos=[];renderPhotoPreviews();updatePreview();saveLocal(false);toast('Foto galeri dihapus.')});
-
-// FORM RSVP & GUESTBOOK
+async function handleProfilePhotoUpload(person,ev){
+ const file=ev.target.files&&ev.target.files[0];if(!file)return;
+ if(!file.type.startsWith('image/')){toast('Pilih file gambar yang valid.');ev.target.value='';return;}
+ if(file.size>8*1024*1024){toast('Ukuran foto maksimal 8 MB sebelum dikompres.');ev.target.value='';return;}
+ try{state[person==='groom'?'groomPhoto':'bridePhoto']=await compressCoverImage(file);renderProfilePhoto(person);updatePreview();saveLocal(false);toast(person==='groom'?'Foto profil mempelai pria dipasang.':'Foto profil mempelai wanita dipasang.');}
+ catch(err){toast(err.message||'Foto profil gagal diproses.');}
+ ev.target.value='';
+}
+$('inGroomPhoto').addEventListener('change',ev=>handleProfilePhotoUpload('groom',ev));
+$('inBridePhoto').addEventListener('change',ev=>handleProfilePhotoUpload('bride',ev));
+$('profilePhotoShape').value=state.profilePhotoShape||'circle';$('profilePhotoFrame').value=state.profilePhotoFrame||'gold';$('profilePhotoPositionY').value=String(state.profilePhotoPositionY??50);$('profilePhotoPositionYLabel').textContent=String(state.profilePhotoPositionY??50);
+$('profilePhotoShape').addEventListener('change',()=>{state.profilePhotoShape=$('profilePhotoShape').value;renderProfilePhoto('groom');renderProfilePhoto('bride');updatePreview();saveLocal(false);});
+$('profilePhotoFrame').addEventListener('change',()=>{state.profilePhotoFrame=$('profilePhotoFrame').value;renderProfilePhoto('groom');renderProfilePhoto('bride');updatePreview();saveLocal(false);});
+$('profilePhotoPositionY').addEventListener('input',()=>{state.profilePhotoPositionY=Number($('profilePhotoPositionY').value);$('profilePhotoPositionYLabel').textContent=String(state.profilePhotoPositionY);renderProfilePhoto('groom');renderProfilePhoto('bride');});
+$('profilePhotoPositionY').addEventListener('change',()=>{updatePreview();saveLocal(false);});
+$('profilePhotoSize').addEventListener('input',()=>{state.profilePhotoSize=Number($('profilePhotoSize').value);$('profilePhotoSizeLabel').textContent=String(state.profilePhotoSize);renderProfilePhoto('groom');renderProfilePhoto('bride');});
+$('profilePhotoSize').addEventListener('change',()=>{state.profilePhotoSize=Number($('profilePhotoSize').value);updatePreview();saveLocal(false);});
+$('clearGroomPhotoBtn').addEventListener('click',()=>{state.groomPhoto='';renderProfilePhoto('groom');updatePreview();saveLocal(false);toast('Foto profil mempelai pria dihapus.');});
+$('clearBridePhotoBtn').addEventListener('click',()=>{state.bridePhoto='';renderProfilePhoto('bride');updatePreview();saveLocal(false);toast('Foto profil mempelai wanita dihapus.');});
 $('rsvpForm').addEventListener('submit',async ev=>{
  ev.preventDefault();
  const entry={name:$('rsvpName').value.trim(),status:$('rsvpStatus').value,count:$('rsvpCount').value,message:'',at:new Date().toISOString()};
- const btn=$('rsvpBtnSubmit'); btn.textContent='MENGIRIM...'; btn.disabled=true;
  try{
    const id=new URLSearchParams(location.search).get('undangan')||state.id;
-   if(publicMode && id){await apiPost({action:'rsvp',id,entry});ev.target.reset();toast('Konfirmasi berhasil dikirim.');}
-   else{
-     const key=STORAGE_KEY+'_rsvp';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.push(entry);localStorage.setItem(key,JSON.stringify(arr));
-     ev.target.reset();toast('Konfirmasi tersimpan di browser ini (mode editor).');
-   }
+   if(publicMode && id){await apiPost({action:'rsvp',id,entry});ev.target.reset();toast('Konfirmasi berhasil dikirim.');return;}
+   const key=STORAGE_KEY+'_rsvp';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.push(entry);localStorage.setItem(key,JSON.stringify(arr));ev.target.reset();toast('Konfirmasi tersimpan di browser ini; buka undangan publik untuk mengirim online.');
  }catch(e){toast('Konfirmasi online gagal: '+e.message)}
- finally{btn.textContent='KIRIM KONFIRMASI'; btn.disabled=false;}
 });
-
 $('guestForm').addEventListener('submit',async ev=>{
  ev.preventDefault();
  const entry={name:$('guestName').value.trim(),message:$('guestMessage').value.trim(),at:new Date().toISOString()};
- const btn=$('guestBtnSubmit'); btn.textContent='MENGIRIM...'; btn.disabled=true;
  try{
    const id=new URLSearchParams(location.search).get('undangan')||state.id;
-   if(publicMode && id){await apiPost({action:'guestbook',id,entry});ev.target.reset();await loadPublicEntries('publicGuestbook',id);toast('Ucapan berhasil dikirim.');}
-   else {
-     const key=STORAGE_KEY+'_guests';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.unshift(entry);localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));
-     renderGuestList();ev.target.reset();toast('Ucapan tersimpan di browser ini (mode editor).');
-   }
+   if(publicMode && id){await apiPost({action:'guestbook',id,entry});ev.target.reset();await loadPublicEntries('publicGuestbook',id);toast('Ucapan berhasil dikirim.');return;}
+   const key=STORAGE_KEY+'_guests';const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.unshift(entry);localStorage.setItem(key,JSON.stringify(arr.slice(0,100)));renderGuestList();ev.target.reset();toast('Ucapan tersimpan di browser ini; buka undangan publik untuk mengirim online.');
  }catch(e){toast('Ucapan online gagal: '+e.message)}
- finally{btn.textContent='KIRIM UCAPAN'; btn.disabled=false;}
 });
-
 function renderGuestList(){
  const el=$('guestList');let arr=[];
  try{arr=JSON.parse(localStorage.getItem(STORAGE_KEY+'_guests')||'[]')}catch(e){}
  if(!arr.length){el.innerHTML='<p class="body-copy">Jadilah yang pertama menyampaikan doa.</p>';return}
  el.innerHTML=arr.map(g=>'<div class="guest-entry"><strong>'+escapeHtml(g.name)+'</strong><br>'+escapeHtml(g.message)+'<br><span class="smallcaps">'+escapeHtml(new Date(g.at).toLocaleDateString('id-ID'))+'</span></div>').join('');
 }
-
 $('copyAccountBtn').addEventListener('click',async()=>{
  const value=state.account||'';
  if(!value){toast('Nomor rekening belum diisi.');return}
  try{await navigator.clipboard.writeText(value);toast('Nomor berhasil disalin.')}
  catch(e){const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Nomor berhasil disalin.':'Gagal menyalin nomor.')}
 });
-
 $('shareBtn').addEventListener('click',async()=>{
  readInputs();
  const url=location.href;
@@ -667,17 +1223,17 @@ $('shareBtn').addEventListener('click',async()=>{
  const wa='https://wa.me/?text='+encodeURIComponent(text);
  window.open(wa,'_blank','noopener');
 });
-
 const audio=$('bgMusic');
-function syncMusic(){if(audio.src!==(state.music||'')){audio.pause();audio.src=state.music||'';audio.load()}}
+function syncMusic(){if(audio.src!==(state.music||'')){audio.pause();audio.src=state.music||'';audio.load()} audio.volume=Math.max(0,Math.min(1,Number(state.musicVolume??0.7)));}
+function syncMusicVolume(){state.musicVolume=Number($('musicVolume').value);audio.volume=state.musicVolume;$('musicVolumeLabel').textContent=Math.round(state.musicVolume*100)+'%';saveLocal(false)}
+$('musicVolume').addEventListener('input',syncMusicVolume);
 async function playMusic(){
- syncMusic();if(!state.music){toast('Isi URL musik gamelan pada tab Koneksi & Lainnya.');return}
+ syncMusic();if(!state.music){toast('Isi URL musik gamelan pada tab Musik & Lainnya.');return}
  try{await audio.play();$('musicToggle').textContent='Ⅱ Jeda Musik'}catch(e){toast('Musik tidak dapat diputar. Periksa URL file audio.')}
 }
 $('musicToggle').addEventListener('click',async()=>{if(audio.paused)await playMusic();else{audio.pause();$('musicToggle').textContent='▶ Putar Musik'}});
 audio.addEventListener('pause',()=>$('musicToggle').textContent='▶ Putar Musik');
 audio.addEventListener('play',()=>$('musicToggle').textContent='Ⅱ Jeda Musik');
-
 function startAutoScroll(){
  stopAutoScroll();const speed=Number(state.scrollSpeed)||1;
  autoTimer=setInterval(()=>{window.scrollBy(0,Math.max(1,speed));if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-2)stopAutoScroll()},30);
@@ -688,11 +1244,64 @@ $('autoToggle').addEventListener('click',()=>autoTimer?stopAutoScroll():startAut
 window.addEventListener('wheel',()=>{if(autoTimer)stopAutoScroll()},{passive:true});
 window.addEventListener('touchstart',()=>{if(autoTimer)stopAutoScroll()},{passive:true});
 window.addEventListener('beforeunload',()=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}});
-
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});
 $('installBtn').addEventListener('click',async()=>{if(!installPrompt){toast('Gunakan menu browser Tambahkan ke layar utama.');return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installBtn').hidden=true});
-
-loadLocal();renderGuestList();
+const colorPalettes={
+ 'gold-black':{gold:'#d4af62',paper:'#fff7e8',coverBg:'#11100e',coverTextColor:'#f2d58a'},
+ 'sage-gold':{gold:'#c7ad70',paper:'#f5f3e9',coverBg:'#23372d',coverTextColor:'#f5e7b5'},
+ 'champagne':{gold:'#c7a878',paper:'#fffaf2',coverBg:'#f5eee2',coverTextColor:'#6d5435'},
+ 'dusty-pink':{gold:'#d7b36a',paper:'#fff4f0',coverBg:'#573640',coverTextColor:'#f7d9c8'}
+};
+function syncPaletteSelection(){document.querySelectorAll('[data-palette]').forEach(btn=>{const p=colorPalettes[btn.dataset.palette];const active=!!p&&p.gold===state.gold&&p.paper===state.paper&&p.coverBg===state.coverBg&&p.coverTextColor===state.coverTextColor;btn.setAttribute('aria-pressed',active?'true':'false')})}
+document.querySelectorAll('[data-palette]').forEach(btn=>btn.addEventListener('click',()=>{const palette=colorPalettes[btn.dataset.palette];if(!palette)return;Object.keys(palette).forEach(key=>{state[key]=palette[key];setInput(key,palette[key])});updatePreview();saveLocal(false);syncPaletteSelection();toast('Palet warna diterapkan. Anda masih bisa mengubah warna secara manual.')}));
+document.querySelectorAll(['#inGold','#inPaper','#inBg','#inCoverTextColor'].join(',')).forEach(el=>el.addEventListener('input',()=>{readInputs();syncPaletteSelection();saveLocal(false)}));
+// v4.0.0: preset desain lokal yang dapat dipakai ulang tanpa membawa data pelanggan/foto pribadi.
+const DESIGN_PRESETS_KEY='jawaWayanganGold_designPresets_v1';
+const DESIGN_PRESET_FIELDS=['gold','paper','coverBg','coverTextColor','coverFont','headingFont','nameFont','bodyFont','coverTitleSize','coupleNameSize','sectionTitleSize','personNameSize','coverTitleWeight','nameWeight','titleSpacing','nameSpacing','profilePhotoShape','profilePhotoSize','profilePhotoFrame','profilePhotoPositionY','motifStyle','animationStyle','showMotif'];
+function readDesignPresets(){try{const v=JSON.parse(localStorage.getItem(DESIGN_PRESETS_KEY)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}}
+function writeDesignPresets(items){try{localStorage.setItem(DESIGN_PRESETS_KEY,JSON.stringify(items));return true}catch(e){toast('Preset tidak bisa disimpan. Periksa ruang penyimpanan browser.');return false}}
+function renderDesignPresets(){
+ const host=$('designPresetList');if(!host)return;const items=readDesignPresets();host.innerHTML='';
+ if(!items.length){host.innerHTML='<div class="preset-empty">Belum ada preset desain tersimpan.</div>';return;}
+ items.forEach((item,index)=>{const row=document.createElement('div');row.className='preset-item';const info=document.createElement('div');const name=document.createElement('strong');name.textContent=item.name||('Preset '+(index+1));const meta=document.createElement('small');meta.textContent='Preset tampilan · '+(item.updatedAt||'tersimpan lokal');info.append(name,meta);const actions=document.createElement('div');actions.className='preset-item-actions';const apply=document.createElement('button');apply.type='button';apply.className='btn';apply.textContent='Terapkan';apply.addEventListener('click',()=>applyDesignPreset(item));const del=document.createElement('button');del.type='button';del.className='btn danger';del.textContent='Hapus';del.addEventListener('click',()=>{const next=readDesignPresets();next.splice(index,1);if(writeDesignPresets(next)){renderDesignPresets();toast('Preset desain dihapus.')}});actions.append(apply,del);row.append(info,actions);host.append(row);});
+}
+function saveDesignPreset(){
+ readInputs();const name=$('designPresetName').value.trim();if(!name){toast('Isi nama preset terlebih dahulu.');$('designPresetName').focus();return;}
+ const items=readDesignPresets();const data={name,updatedAt:new Date().toLocaleDateString('id-ID'),design:{}};DESIGN_PRESET_FIELDS.forEach(key=>{if(key==='showMotif')data.design[key]=!!state.showMotif;else if(state[key]!==undefined)data.design[key]=state[key]});
+ const existing=items.findIndex(item=>String(item.name||'').toLowerCase()===name.toLowerCase());if(existing>=0)items[existing]=data;else items.unshift(data);
+ if(writeDesignPresets(items)){renderDesignPresets();$('designPresetName').value='';toast(existing>=0?'Preset lama diperbarui.':'Preset desain tersimpan di browser ini.');}
+}
+function applyDesignPreset(item){
+ if(!item||!item.design)return;Object.keys(item.design).forEach(key=>{if(!DESIGN_PRESET_FIELDS.includes(key))return;state[key]=item.design[key];if(key!=='showMotif')setInput(key,item.design[key]);});
+ $('toggleMotif').checked=!!state.showMotif;
+ $('profilePhotoShape').value=state.profilePhotoShape||'circle';$('profilePhotoSize').value=String(state.profilePhotoSize||112);$('profilePhotoSizeLabel').textContent=String(state.profilePhotoSize||112);$('profilePhotoFrame').value=state.profilePhotoFrame||'gold';$('profilePhotoPositionY').value=String(state.profilePhotoPositionY??50);$('profilePhotoPositionYLabel').textContent=String(state.profilePhotoPositionY??50);
+ updatePreview();syncPaletteSelection();saveLocal(false);toast('Preset “'+(item.name||'Desain')+'” diterapkan.');
+}
+function exportDesignPresets(){
+ const presets=readDesignPresets();if(!presets.length){toast('Belum ada preset untuk diekspor.');return;}
+ const payload={app:'Jawa Wayangan Gold Studio',formatVersion:1,exportedAt:new Date().toISOString(),presets:presets.map(item=>({name:String(item.name||'Preset'),updatedAt:item.updatedAt||'',design:Object.fromEntries(Object.entries(item.design||{}).filter(([key])=>DESIGN_PRESET_FIELDS.includes(key)))}))};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='jawa-wayangan-gold-preset-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('File JSON preset berhasil disiapkan.');
+}
+function importDesignPresetsFile(file){
+ if(!file)return;if(file.size>2*1024*1024){toast('File terlalu besar. Pilih file JSON preset maksimal 2 MB.');return;}
+ const reader=new FileReader();reader.onload=()=>{try{
+  const parsed=JSON.parse(String(reader.result||''));const incoming=Array.isArray(parsed)?parsed:parsed&&Array.isArray(parsed.presets)?parsed.presets:null;
+  if(!incoming)throw new Error('Format preset tidak ditemukan.');
+  const current=readDesignPresets();let added=0,updated=0,skipped=0;
+  incoming.forEach(item=>{if(!item||typeof item.name!=='string'||!item.design||typeof item.design!=='object'||Array.isArray(item.design)){skipped++;return;}
+   const name=item.name.trim().slice(0,50);if(!name){skipped++;return;}const design={};DESIGN_PRESET_FIELDS.forEach(key=>{if(Object.prototype.hasOwnProperty.call(item.design,key)){const value=item.design[key];if(key==='showMotif')design[key]=!!value;else if(['string','number','boolean'].includes(typeof value))design[key]=value;}});
+   if(!Object.keys(design).length){skipped++;return;}const record={name,updatedAt:String(item.updatedAt||new Date().toLocaleDateString('id-ID')),design};const index=current.findIndex(old=>String(old.name||'').toLowerCase()===name.toLowerCase());if(index>=0){current[index]=record;updated++;}else{current.unshift(record);added++;}
+  });
+  if(!added&&!updated){toast('Tidak ada preset valid di file tersebut.');return;}if(writeDesignPresets(current)){renderDesignPresets();toast('Impor selesai: '+added+' ditambahkan, '+updated+' diperbarui'+(skipped?', '+skipped+' dilewati':'')+'.');}
+ }catch(err){toast('File JSON tidak valid atau bukan cadangan preset Jawa Wayangan Gold.');}};reader.onerror=()=>toast('File tidak bisa dibaca.');reader.readAsText(file);
+}
+$('saveDesignPresetBtn').addEventListener('click',saveDesignPreset);
+$('exportDesignPresetsBtn').addEventListener('click',exportDesignPresets);
+$('importDesignPresetsBtn').addEventListener('click',()=>$('designPresetsFileInput').click());
+$('designPresetsFileInput').addEventListener('change',ev=>{const file=ev.target.files&&ev.target.files[0];importDesignPresetsFile(file);ev.target.value='';});
+$('designPresetName').addEventListener('keydown',ev=>{if(ev.key==='Enter'){ev.preventDefault();saveDesignPreset();}});
+renderDesignPresets();
+loadLocal();syncPaletteSelection();renderGuestList();
 loadPublicInvitation();
 setInterval(updateCountdown,1000);
 })();
